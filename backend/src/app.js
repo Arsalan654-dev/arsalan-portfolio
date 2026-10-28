@@ -13,6 +13,9 @@ const routes = require('./routes');
 
 const app = express();
 
+// Vercel (and most reverse proxies) forward the client IP in X-Forwarded-For.
+app.set('trust proxy', 1);
+
 app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use(cors({
   origin: process.env.FRONTEND_URL || 'http://localhost:3000',
