@@ -4,8 +4,8 @@ A full-stack MERN portfolio and services platform for **Arsalan Akhtar**, featur
 
 ## Live Site
 
-- **Frontend:** _coming soon_
-- **API:** _coming soon_
+- **Frontend:** https://arsalan-portfolio-eight.vercel.app
+- **API:** https://arsalan-portfolio-api.vercel.app
 
 ## Tech Stack
 
