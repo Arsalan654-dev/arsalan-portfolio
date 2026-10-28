@@ -1,15 +1,20 @@
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
+const os = require('os');
 
-const tempDir = path.join(__dirname, '../../temp');
-if (!fs.existsSync(tempDir)) {
-  fs.mkdirSync(tempDir, { recursive: true });
-}
+// Serverless platforms mount the deployment directory read-only, so uploads
+// must be buffered in the writable OS temp directory instead.
+const tempDir = path.join(os.tmpdir(), 'arsalan-portfolio-uploads');
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, tempDir);
+    try {
+      fs.mkdirSync(tempDir, { recursive: true });
+      cb(null, tempDir);
+    } catch (error) {
+      cb(error);
+    }
   },
   filename: (req, file, cb) => {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
