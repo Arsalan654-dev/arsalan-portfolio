@@ -1,0 +1,59 @@
+:root {
+  --bp: #0a0a0f;
+  --bs: #12121a;
+  --bt: #1a1a2e;
+  --bc: #16162a;
+  --tp: #f0f0f5;
+  --ts: #a0a0b8;
+  --tm: #6a6a82;
+  --ap: #8b5cf6;
+  --apl: #a78bfa;
+  --ab: #38bdf8;
+  --abl: #7dd3fc;
+  --bdr: #2a2a42;
+  --bg: rgba(139, 92, 246, 0.3);
+  --gm: linear-gradient(135deg, #8b5cf6, #38bdf8);
+  --gc: linear-gradient(145deg, rgba(139, 92, 246, 0.08), rgba(56, 189, 248, 0.05));
+  --sg: 0 0 40px rgba(139, 92, 246, 0.15);
+  --sgl: 0 4px 20px rgba(0, 0, 0, 0.3);
+  --sgm: 0 8px 32px rgba(0, 0, 0, 0.4);
+  --ok: #22c55e;
+  --wn: #f59e0b;
+  --er: #ef4444;
+  --font-sans: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --transition: 0.3s ease;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+  --max-width: 1320px;
+  --sidebar-width: 260px;
+  --sidebar-collapsed: 70px;
+  --header-height: 70px;
+  --z-sidebar: 1000;
+  --z-header: 1001;
+  --z-modal: 1050;
+  --z-toast: 1100;
+}
+
+[data-theme="light"] {
+  --bp: #f8f9fc;
+  --bs: #ffffff;
+  --bt: #f0f1f5;
+  --bc: #ffffff;
+  --tp: #1a1a2e;
+  --ts: #4a4a62;
+  --tm: #8a8aa2;
+  --ap: #7c3aed;
+  --apl: #8b5cf6;
+  --ab: #0ea5e9;
+  --abl: #38bdf8;
+  --bdr: #e2e4ea;
+  --bg: rgba(124, 58, 237, 0.2);
+  --gc: linear-gradient(145deg, rgba(124, 58, 237, 0.04), rgba(14, 165, 233, 0.03));
+  --sg: 0 4px 30px rgba(124, 58, 237, 0.08);
+  --sgl: 0 2px 12px rgba(0, 0, 0, 0.06);
+  --sgm: 0 8px 30px rgba(0, 0, 0, 0.08);
+}

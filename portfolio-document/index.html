@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arsalan Akhtar — Portfolio SaaS — Complete Project Document</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bp:#0a0a0f;--bs:#12121a;--bt:#1a1a2e;--bc:#16162a;--tp:#f0f0f5;--ts:#a0a0b8;--tm:#6a6a82;--ap:#8b5cf6;--apl:#a78bfa;--ab:#38bdf8;--abl:#7dd3fc;--bdr:#2a2a42;--bg:rgba(139,92,246,.3);--gm:linear-gradient(135deg,#8b5cf6,#38bdf8);--gc:linear-gradient(145deg,rgba(139,92,246,.08),rgba(56,189,248,.05));--sg:0 0 40px rgba(139,92,246,.15);--ok:#22c55e;--wn:#f59e0b;--er:#ef4444}
+[data-theme="light"]{--bp:#f8f9fc;--bs:#fff;--bt:#f0f1f5;--bc:#fff;--tp:#1a1a2e;--ts:#4a4a62;--tm:#8a8aa2;--ap:#7c3aed;--apl:#8b5cf6;--ab:#0ea5e9;--abl:#38bdf8;--bdr:#e2e4ea;--bg:rgba(124,58,237,.2);--gc:linear-gradient(145deg,rgba(124,58,237,.04),rgba(14,165,233,.03));--sg:0 4px 30px rgba(124,58,237,.08)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Space Grotesk',sans-serif;background:var(--bp);color:var(--tp);line-height:1.7;overflow-x:hidden}
+.orb{position:fixed;border-radius:50%;filter:blur(120px);opacity:.1;pointer-events:none;z-index:0;animation:of 20s ease-in-out infinite}
+.o1{width:500px;height:500px;background:var(--ap);top:-150px;right:-80px}
+.o2{width:400px;height:400px;background:var(--ab);bottom:-100px;left:-60px;animation-delay:-7s}
+@keyframes of{0%,100%{transform:translate(0,0)}50%{transform:translate(25px,-30px)}}
+.topbar{position:fixed;top:0;left:0;right:0;height:56px;z-index:1000;background:rgba(10,10,15,.88);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--bdr);display:flex;align-items:center;justify-content:space-between;padding:0 20px}
+[data-theme="light"] .topbar{background:rgba(255,255,255,.9)}
+.brand{font-weight:700;font-size:1rem;background:var(--gm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.brand span{font-weight:400;opacity:.7;-webkit-text-fill-color:var(--ts)}
+.tbtn{background:var(--bt);border:1px solid var(--bdr);color:var(--tp);width:36px;height:36px;border-radius:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.3s;font-size:.9rem}
+.tbtn:hover{border-color:var(--ap);box-shadow:0 0 12px var(--bg)}
+.side{position:fixed;top:56px;left:0;width:260px;height:calc(100vh - 56px);background:var(--bs);border-right:1px solid var(--bdr);overflow-y:auto;z-index:900;padding:12px 0;transition:transform .35s ease}
+.side::-webkit-scrollbar{width:3px}.side::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:9px}
+.side .ttl{font-size:.6rem;text-transform:uppercase;letter-spacing:2px;color:var(--tm);padding:0 14px;margin-bottom:5px}
+.side a{display:flex;align-items:center;gap:7px;padding:6px 14px;color:var(--ts);text-decoration:none;font-size:.75rem;transition:.2s;border-left:2px solid transparent}
+.side a:hover{color:var(--tp);background:rgba(139,92,246,.05)}
+.side a.on{color:var(--apl);border-left-color:var(--ap);background:rgba(139,92,246,.08)}
+.side a i{font-size:.4rem;width:10px;text-align:center}
+.sd{height:1px;background:var(--bdr);margin:5px 14px}
+.wrap{margin-left:260px;padding:72px 32px 60px;min-height:100vh;position:relative;z-index:1}
+.hero{text-align:center;padding:20px 0 16px;margin-bottom:20px;position:relative}
+.hero::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:80px;height:2px;background:var(--gm);border-radius:2px}
+.bv{display:inline-flex;align-items:center;gap:5px;background:rgba(139,92,246,.12);color:var(--apl);font-size:.68rem;font-weight:600;padding:4px 12px;border-radius:50px;border:1px solid rgba(139,92,246,.2);margin-bottom:10px;font-family:'JetBrains Mono',monospace}
+.hero h1{font-size:2rem;font-weight:700;line-height:1.2;margin-bottom:5px}
+.gt{background:var(--gm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{color:var(--ts);font-size:.92rem;max-width:600px;margin:0 auto}
+.sh{display:flex;align-items:center;gap:10px;margin-bottom:10px;padding-top:20px;margin-top:8px}
+.hn{width:28px;height:28px;border-radius:7px;background:var(--gm);display:flex;align-items:center;justify-content:center;color:#fff;font-size:.7rem;font-weight:700;flex-shrink:0}
+.sh h2{font-size:1.2rem;font-weight:700}
+.ssh{font-size:.98rem;font-weight:600;color:var(--apl);margin:14px 0 6px;display:flex;align-items:center;gap:6px}
+.ssh i{font-size:.75rem}
+.dc{background:var(--gc);border:1px solid var(--bdr);border-radius:10px;padding:14px;margin-bottom:8px;transition:.3s}
+.dc:hover{border-color:var(--bg);box-shadow:var(--sg)}
+.cl{font-size:.6rem;text-transform:uppercase;letter-spacing:1.5px;color:var(--tm);margin-bottom:4px}
+.dc h4{font-size:.88rem;font-weight:600;margin-bottom:4px}
+.dc p{color:var(--ts);font-size:.8rem;margin:0}
+.tw{border:1px solid var(--bdr);border-radius:10px;overflow:hidden;margin:8px 0 12px}
+.dt{width:100%;border-collapse:collapse;font-size:.76rem}
+.dt thead th{background:var(--bt);color:var(--ts);font-weight:600;font-size:.64rem;text-transform:uppercase;letter-spacing:1px;padding:8px 10px;text-align:left;border-bottom:1px solid var(--bdr)}
+.dt tbody td{padding:6px 10px;border-bottom:1px solid rgba(42,42,66,.35);color:var(--ts);vertical-align:top}
+.dt tbody tr:last-child td{border-bottom:none}
+.dt tbody tr:hover{background:rgba(139,92,246,.03)}
+.dt code{font-family:'JetBrains Mono',monospace;background:rgba(139,92,246,.1);color:var(--apl);padding:2px 5px;border-radius:4px;font-size:.7rem}
+.cb{background:#0d0d14;border:1px solid var(--bdr);border-radius:8px;margin:6px 0 10px;overflow:hidden}
+[data-theme="light"] .cb{background:#1e1e2e}
+.cbh{display:flex;align-items:center;justify-content:space-between;padding:5px 10px;background:rgba(255,255,255,.03);border-bottom:1px solid var(--bdr)}
+.cbh .lt{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--tm);text-transform:uppercase;letter-spacing:1px}
+.cpb{background:none;border:1px solid var(--bdr);color:var(--tm);font-size:.6rem;padding:2px 8px;border-radius:4px;cursor:pointer;font-family:'JetBrains Mono',monospace;transition:.2s}
+.cpb:hover{color:var(--apl);border-color:var(--ap)}
+.cb pre{padding:10px 12px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:.7rem;line-height:1.55;color:#c8c8e0;margin:0;white-space:pre;tab-size:2}
+.kw{color:#c792ea}.str{color:#c3e88d}.num{color:#f78c6c}.cm{color:#546e7a;font-style:italic}.fn{color:#82aaff}.type{color:#ffcb6b}.var{color:#f07178}
+.tag{display:inline-flex;align-items:center;font-size:.64rem;font-weight:500;padding:2px 6px;border-radius:4px;white-space:nowrap}
+.tg{background:rgba(34,197,94,.12);color:#4ade80}.tb{background:rgba(56,189,248,.12);color:var(--abl)}.to{background:rgba(245,158,11,.12);color:#fbbf24}.tr{background:rgba(239,68,68,.12);color:#f87171}.tgr{background:rgba(148,148,170,.1);color:var(--ts)}.tp{background:rgba(139,92,246,.12);color:var(--apl)}
+.pc{background:var(--bc);border:1px solid var(--bdr);border-radius:12px;padding:16px;margin-bottom:10px;position:relative;overflow:hidden;transition:.35s}
+.pc::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--gm);border-radius:0 4px 4px 0}
+.pc:hover{border-color:var(--bg);box-shadow:var(--sg);transform:translateY(-2px)}
+.ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.pl{display:flex;align-items:center;gap:8px}
+.pn{width:32px;height:32px;border-radius:8px;background:var(--gm);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:.82rem}
+.pt{font-size:1rem;font-weight:700}
+.pdur{font-size:.64rem;color:var(--tm);font-family:'JetBrains Mono',monospace}
+.pd{color:var(--ts);font-size:.82rem;margin-bottom:8px}
+.tl{list-style:none;padding:0}
+.tl li{display:flex;align-items:flex-start;gap:6px;padding:3px 0;font-size:.78rem;color:var(--ts)}
+.tl li i{color:var(--ap);margin-top:3px;font-size:.55rem;flex-shrink:0}
+.ft{background:var(--bc);border:1px solid var(--bdr);border-radius:8px;padding:10px 12px;font-family:'JetBrains Mono',monospace;font-size:.68rem;line-height:1.8;color:var(--ts);margin:6px 0 10px;overflow-x:auto;white-space:pre}
+.fd{color:var(--abl);font-weight:600}.fi2{color:var(--ts)}.fimp{color:var(--apl)}.fc2{color:var(--tm);font-style:normal}
+.ib{border-radius:8px;padding:10px 12px;margin:8px 0;font-size:.78rem;display:flex;align-items:flex-start;gap:8px}
+.ib i{margin-top:2px;flex-shrink:0;font-size:.85rem}
+.ib.info{background:rgba(56,189,248,.08);border:1px solid rgba(56,189,248,.2);color:var(--abl)}
+.ib.warn{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);color:#fbbf24}
+.ib.ok{background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);color:#4ade80}
+.fl{list-style:none;padding:0;margin:6px 0 10px}
+.fl li{display:flex;align-items:flex-start;gap:6px;padding:4px 0;font-size:.8rem;color:var(--ts)}
+.fl li i{color:var(--ok);margin-top:3px;font-size:.65rem;flex-shrink:0}
+.fl li strong{color:var(--tp)}
+.sr{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:8px 0 12px}
+.si{background:var(--gc);border:1px solid var(--bdr);border-radius:8px;padding:12px;text-align:center;transition:.3s}
+.si:hover{border-color:var(--bg)}
+.sn{font-size:1.5rem;font-weight:700;background:var(--gm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sl2{font-size:.6rem;color:var(--tm);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.fd2{display:flex;align-items:center;gap:5px;flex-wrap:wrap;margin:8px 0 12px;padding:10px;background:var(--bc);border:1px solid var(--bdr);border-radius:8px}
+.fs{background:rgba(139,92,246,.1);border:1px solid rgba(139,92,246,.25);color:var(--apl);padding:4px 10px;border-radius:6px;font-size:.68rem;font-weight:600;white-space:nowrap}
+.fa2{color:var(--tm);font-size:.75rem}
+.ag{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px;margin:8px 0 12px}
+.abx{background:var(--bc);border:1px solid var(--bdr);border-radius:8px;padding:10px;text-align:center;transition:.3s}
+.abx:hover{border-color:var(--bg);transform:translateY(-2px)}
+.abx i{font-size:1.2rem;margin-bottom:4px;display:block}
+.abx .at{font-size:.75rem;font-weight:600;margin-bottom:2px}
+.abx .ad{font-size:.64rem;color:var(--tm)}
+.mtog{display:none;position:fixed;bottom:16px;right:16px;z-index:1100;width:46px;height:46px;border-radius:12px;background:var(--gm);color:#fff;border:none;font-size:1rem;cursor:pointer;box-shadow:0 4px 20px rgba(139,92,246,.4)}
+.mov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:899}
+.dft{margin-top:24px;padding:16px 0;border-top:1px solid var(--bdr);text-align:center;color:var(--tm);font-size:.72rem}
+.dft .fb{background:var(--gm);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;font-size:.82rem}
+@media(max-width:992px){
+.side{transform:translateX(-100%)}
+.side.open{transform:translateX(0)}
+.mtog{display:flex;align-items:center;justify-content:center}
+.mov.open{display:block}
+.wrap{margin-left:0;padding:68px 14px 50px}
+.hero h1{font-size:1.5rem}
+}
+@media(max-width:576px){.sr{grid-template-columns:repeat(2,1fr)}.fd2{flex-direction:column;align-items:stretch}.fa2{transform:rotate(90deg);text-align:center}}
+@media print{.side,.topbar,.mtog,.mov,.orb{display:none!important}.wrap{margin-left:0!important;padding:10px!important}body{background:#fff!important;color:#000!important}}
+::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--bp)}::-webkit-scrollbar-thumb{background:var(--bdr);border-radius:9px}
+html{scroll-behavior:smooth}
+</style>
+</head>
+<body>
+<div class="orb o1"></div>
+<div class="orb o2"></div>
+
+<div class="topbar">
+<div class="brand">Arsalan Portfolio SaaS <span>| Project Doc v1.0</span></div>
+<button class="tbtn" id="themeToggle" title="Toggle Theme"><i class="fas fa-moon"></i></button>
+</div>
+
+<aside class="side" id="side">
+<div class="ttl">Table of Contents</div>
+<a href="#ov" class="on"><i class="fas fa-circle"></i>Project Overview</a>
+<a href="#st"><i class="fas fa-circle"></i>Key Statistics</a>
+<div class="sd"></div>
+<a href="#ts"><i class="fas fa-circle"></i>Tech Stack & Versions</a>
+<a href="#ar"><i class="fas fa-circle"></i>System Architecture</a>
+<div class="sd"></div>
+<a href="#db"><i class="fas fa-circle"></i>Database Schemas (13)</a>
+<a href="#s1"><i class="fas fa-circle"></i>User</a>
+<a href="#s2"><i class="fas fa-circle"></i>Category</a>
+<a href="#s3"><i class="fas fa-circle"></i>Technology</a>
+<a href="#s4"><i class="fas fa-circle"></i>Slug / Skill</a>
+<a href="#s5"><i class="fas fa-circle"></i>Project / Service / Review</a>
+<a href="#s6"><i class="fas fa-circle"></i>Order</a>
+<a href="#s7"><i class="fas fa-circle"></i>Promo Code</a>
+<a href="#s8"><i class="fas fa-circle"></i>Other 6 Collections</a>
+<div class="sd"></div>
+<a href="#api"><i class="fas fa-circle"></i>API Routes (85+)</a>
+<a href="#a1"><i class="fas fa-circle"></i>Auth Routes (12)</a>
+<a href="#a2"><i class="fas fa-circle"></i>Admin Routes (50+)</a>
+<a href="#a3"><i class="fas fa-circle"></i>User Routes (22)</a>
+<a href="#a4"><i class="fas fa-circle"></i>Public Routes (17)</a>
+<div class="sd"></div>
+<a href="#fs"><i class="fas fa-circle"></i>File Structure</a>
+<a href="#f1"><i class="fas fa-circle"></i>Frontend (Next.js)</a>
+<a href="#f2"><i class="fas fa-circle"></i>Backend (Express.js)</a>
+<div class="sd"></div>
+<a href="#sec"><i class="fas fa-circle"></i>Security Measures</a>
+<a href="#feat"><i class="fas fa-circle"></i>Features Detail</a>
+<a href="#fe1"><i class="fas fa-circle"></i>Auth & 2FA Flow</a>
+<a href="#fe2"><i class="fas fa-circle"></i>Admin Features</a>
+<a href="#fe3"><i class="fas fa-circle"></i>User Features</a>
+<a href="#fe4"><i class="fas fa-circle"></i>Public Pages</a>
+<a href="#fe5"><i class="fas fa-circle"></i>i18n & Theme</a>
+<div class="sd"></div>
+<a href="#ph"><i class="fas fa-circle"></i>7 Development Phases</a>
+<a href="#p1"><i class="fas fa-circle"></i>Phase 1: Foundation</a>
+<a href="#p2"><i class="fas fa-circle"></i>Phase 2: Auth</a>
+<a href="#p3"><i class="fas fa-circle"></i>Phase 3: Admin Core</a>
+<a href="#p4"><i class="fas fa-circle"></i>Phase 4: User Features</a>
+<a href="#p5"><i class="fas fa-circle"></i>Phase 5: Public Frontend</a>
+<a href="#p6"><i class="fas fa-circle"></i>Phase 6: Advanced</a>
+<a href="#p7"><i class="fas fa-circle"></i>Phase 7: Polish</a>
+<div class="sd"></div>
+<a href="#env"><i class="fas fa-circle"></i>Environment Variables</a>
+<a href="#tp2"><i class="fas fa-circle"></i>Third-Party Services</a>
+<a href="#dep"><i class="fas fa-circle"></i>Deployment Plan</a>
+</aside>
+
+<div class="mov" id="mov"></div>
+<button class="mtog" id="mtog"><i class="fas fa-bars"></i></button>
+
+<div class="wrap" id="wrap">
+
+<!-- 1 -->
+<div class="hero" id="ov">
+<div class="bv"><i class="fas fa-code-branch"></i> Document v1.0 — June 2026</div>
+<h1>Arsalan Akhtar <span class="gt">Portfolio SaaS</span> Web App</h1>
+<p>Complete Technical Specification, Database Design, API Architecture & Development Roadmap</p>
+</div>
+<div class="dc"><div class="cl">Description</div><p>A comprehensive, production-ready SaaS portfolio web application for Arsalan Akhtar (Full-Stack Software Engineer). Showcases projects, services, blogs. Users can browse, add to cart, place orders with mock Stripe payments, rate/review, manage profiles. Admin has full control over all content, users, orders, promo codes, analytics, AI chatbot. Trilingual (EN, UR, AR), light/dark themes, fully responsive across all devices.</p></div>
+<div class="dc"><div class="cl">Design Direction</div><h4>Upwork-Inspired with Custom Theme</h4><p>Professional, clean layout inspired by Upwork's UI patterns — card-based layouts, clear hierarchy, structured tables — with a distinctive purple + light blue + black + gray gradient theme. No default blue/purple cliché.</p></div>
+
+<!-- 2 -->
+<div class="sh" id="st"><div class="hn">2</div><h2>Key Statistics</h2></div>
+<div class="sr">
+<div class="si"><div class="sn">13</div><div class="sl2">DB Collections</div></div>
+<div class="si"><div class="sn">85+</div><div class="sl2">API Endpoints</div></div>
+<div class="si"><div class="sn">25+</div><div class="sl2">Frontend Pages</div></div>
+<div class="si"><div class="sn">7</div><div class="sl2">Dev Phases</div></div>
+<div class="si"><div class="sn">2</div><div class="sl2">User Roles</div></div>
+<div class="si"><div class="sn">3</div><div class="sl2">Languages</div></div>
+</div>
+
+<!-- 3 -->
+<div class="sh" id="ts"><div class="hn">3</div><h2>Tech Stack & Versions (June 2026)</h2></div>
+<div class="tw"><table class="dt"><thead><tr><th>Technology</th><th>Version</th><th>Purpose</th></tr></thead><tbody>
+<tr><td><strong>Next.js</strong></td><td><code>15.3.x</code></td><td>Frontend Framework (App Router, SSR, SSG)</td></tr>
+<tr><td><strong>React</strong></td><td><code>19.1.x</code></td><td>UI Library</td></tr>
+<tr><td><strong>Node.js</strong></td><td><code>22.x LTS</code></td><td>Backend Runtime</td></tr>
+<tr><td><strong>Express.js</strong></td><td><code>5.1.x</code></td><td>Backend Web Framework</td></tr>
+<tr><td><strong>MongoDB</strong></td><td><code>8.x</code></td><td>Primary Database</td></tr>
+<tr><td><strong>Mongoose</strong></td><td><code>8.12.x</code></td><td>ODM for MongoDB</td></tr>
+<tr><td><strong>Redux Toolkit</strong></td><td><code>2.8.x</code></td><td>Global State Management</td></tr>
+<tr><td><strong>Redux Thunk</strong></td><td><code>3.1.x</code></td><td>Async Middleware for Redux</td></tr>
+<tr><td><strong>Axios</strong></td><td><code>1.9.x</code></td><td>HTTP Client</td></tr>
+<tr><td><strong>Redis</strong></td><td><code>7.4.x</code></td><td>OTP Storage, Rate Limiting, Cache</td></tr>
+<tr><td><strong>ioredis</strong></td><td><code>5.6.x</code></td><td>Redis Client for Node.js</td></tr>
+<tr><td><strong>express-rate-limit</strong></td><td><code>7.5.x</code></td><td>Rate Limiting Middleware</td></tr>
+<tr><td><strong>rate-limit-redis</strong></td><td><code>4.2.x</code></td><td>Redis Store for Rate Limiting</td></tr>
+<tr><td><strong>JWT</strong></td><td><code>9.0.x</code></td><td>Access & Refresh Token Auth</td></tr>
+<tr><td><strong>bcryptjs</strong></td><td><code>2.4.x</code></td><td>Password Hashing</td></tr>
+<tr><td><strong>Cloudinary</strong></td><td><code>2.7.x</code></td><td>Image & Video Storage/CDN</td></tr>
+<tr><td><strong>multer</strong></td><td><code>1.4.x</code></td><td>File Upload Handling</td></tr>
+<tr><td><strong>Twilio</strong></td><td><code>5.6.x</code></td><td>SMS & WhatsApp OTP</td></tr>
+<tr><td><strong>Nodemailer</strong></td><td><code>7.0.x</code></td><td>Email Sending</td></tr>
+<tr><td><strong>Stripe</strong></td><td><code>18.x</code></td><td>Mock Payment Gateway</td></tr>
+<tr><td><strong>react-hot-toast</strong></td><td><code>2.5.x</code></td><td>Toast Notifications</td></tr>
+<tr><td><strong>Bootstrap</strong></td><td><code>5.3.5</code></td><td>Responsive Grid & Components</td></tr>
+<tr><td><strong>Normal CSS</strong></td><td>—</td><td>Custom Styling, Theme Variables</td></tr>
+<tr><td><strong>i18next</strong></td><td><code>25.x</code></td><td>Internationalization Core</td></tr>
+<tr><td><strong>react-i18next</strong></td><td><code>15.x</code></td><td>React i18n Bindings</td></tr>
+<tr><td><strong>cookie-parser</strong></td><td><code>1.4.x</code></td><td>Cookie Parsing</td></tr>
+<tr><td><strong>cors</strong></td><td><code>2.8.x</code></td><td>CORS Middleware</td></tr>
+<tr><td><strong>dotenv</strong></td><td><code>16.5.x</code></td><td>Environment Variables</td></tr>
+<tr><td><strong>helmet</strong></td><td><code>8.1.x</code></td><td>Security Headers</td></tr>
+<tr><td><strong>morgan</strong></td><td><code>1.10.x</code></td><td>HTTP Request Logger</td></tr>
+<tr><td><strong>OpenAI SDK</strong></td><td><code>4.x</code></td><td>AI Chatbot Integration</td></tr>
+</tbody></table></div>
+<div class="ib info"><i class="fas fa-info-circle"></i><div>All versions are latest stable as of June 2026. Run <code>npm install package@latest</code> during setup.</div></div>
+
+<!-- 4 -->
+<div class="sh" id="ar"><div class="hn">4</div><h2>System Architecture</h2></div>
+<div class="ag">
+<div class="abx"><i class="fas fa-desktop" style="color:var(--ap)"></i><div class="at">Next.js Frontend</div><div class="ad">App Router, SSR, Redux, i18n</div></div>
+<div class="abx"><i class="fas fa-server" style="color:var(--ab)"></i><div class="at">Express.js Backend</div><div class="ad">REST API, JWT, Rate Limit</div></div>
+<div class="abx"><i class="fas fa-database" style="color:#22c55e"></i><div class="at">MongoDB</div><div class="ad">13 Collections, Mongoose</div></div>
+<div class="abx"><i class="fas fa-bolt" style="color:#f59e0b"></i><div class="at">Redis</div><div class="ad">OTP, Rate Limit, Cache</div></div>
+<div class="abx"><i class="fas fa-cloud" style="color:#38bdf8"></i><div class="at">Cloudinary</div><div class="ad">Images, Videos, Dedup</div></div>
+<div class="abx"><i class="fas fa-comment-sms" style="color:#22c55e"></i><div class="at">Twilio</div><div class="ad">SMS + WhatsApp OTP</div></div>
+<div class="abx"><i class="fas fa-envelope" style="color:#ef4444"></i><div class="at">Nodemailer</div><div class="ad">Email OTP, Orders</div></div>
+<div class="abx"><i class="fas fa-credit-card" style="color:#a78bfa"></i><div class="at">Stripe (Mock)</div><div class="ad">Payment Simulation</div></div>
+</div>
+<div class="ssh"><i class="fas fa-project-diagram"></i>Request Flow</div>
+<div class="fd2">
+<div class="fs">Browser</div><div class="fa2"><i class="fas fa-arrow-right"></i></div>
+<div class="fs">Next.js</div><div class="fa2"><i class="fas fa-arrow-right"></i></div>
+<div class="fs">Redux Thunk</div><div class="fa2"><i class="fas fa-arrow-right"></i></div>
+<div class="fs">Axios</div><div class="fa2"><i class="fas fa-arrow-right"></i></div>
+<div class="fs">Rate Limiter</div><div class="fa2"><i class="fas fa-arrow-right"></i></div>
+<div class="fs">JWT Middleware</div><div class="fa2"><i class="fas fa-arrow-right"></i></div>
+<div class="fs">Controller</div><div class="fa2"><i class="fas fa-arrow-right"></i></div>
+<div class="fs">Mongoose</div><div class="fa2"><i class="fas fa-arrow-right"></i></div>
+<div class="fs">MongoDB</div>
+</div>
+
+<!-- 5 -->
+<div class="sh" id="db"><div class="hn">5</div><h2>Database Schemas (13 Collections)</h2></div>
+
+<div class="ssh" id="s1"><i class="fas fa-user"></i>5.1 — User Collection</div>
+<div class="cb"><div class="cbh"><span class="lt">Mongoose Schema — users</span><button class="cpb" onclick="cp(this)">Copy</button></div>
+<pre>{
+  <span class="var">_id</span>:              <span class="type">ObjectId</span>,
+  <span class="var">name</span>:              { type: String, required: true, trim: true, min: 2, max: 100 },
+  <span class="var">email</span>:             { type: String, required: true, unique: true, lowercase: true },
+  <span class="var">password</span>:          { type: String, required: true, min: 8 },  <span class="cm">// bcrypt</span>
+  <span class="var">role</span>:              { type: String, enum: [<span class="str">"admin"</span>,<span class="str">"user"</span>], default: <span class="str">"user"</span> },
+  <span class="var">isEmailVerified</span>:   { type: Boolean, default: false },
+  <span class="var">isActive</span>:          { type: Boolean, default: true },
+  <span class="var">is2FAEnabled</span>:      { type: Boolean, default: false },
+  <span class="var">profilePicture</span>:    { type: String, default: null },  <span class="cm">// Cloudinary URL</span>
+  <span class="var">mobileNumber</span>:      { type: String, default: null, sparse: true },
+  <span class="var">country</span>:           { type: ObjectId, ref: <span class="str">"countries"</span>, default: null },
+  <span class="var">city</span>:              { type: ObjectId, ref: <span class="str">"cities"</span>, default: null },
+  <span class="var">address</span>:           { type: String, default: null, max: 500 },
+  <span class="var">wishlist</span>:          [{ type: ObjectId, ref: <span class="str">"projects"</span> }],
+  <span class="var">cart</span>:              [{
+    <span class="var">item</span>:     { type: ObjectId, refPath: <span class="str">"itemType"</span> },
+    <span class="var">itemType</span>: { type: String, enum: [<span class="str">"projects"</span>,<span class="str">"services"</span>] },
+    <span class="var">quantity</span>: { type: Number, default: 1 },
+    <span class="var">addedAt</span>:  { type: Date, default: Date.now }
+  }],
+  <span class="var">totalPurchasedAmount</span>: { type: Number, default: 0 },
+  <span class="var">promoCodesReceived</span>:  [{ type: ObjectId, ref: <span class="str">"promocodes"</span> }],
+  <span class="var">createdAt</span>:         { type: Date, default: Date.now },
+  <span class="var">updatedAt</span>:         { type: Date, default: Date.now }
+}
+<span class="cm">// Indexes: email(unique), role, isActive, createdAt</span></pre></div>
+
+<div class="ssh" id="s2"><i class="fas fa-folder"></i>5.2 — Category Collection</div>
+<div class="cb"><div class="cbh"><span class="lt">Mongoose Schema — categories</span><button class="cpb" onclick="cp(this)">Copy</button></div>
+<pre>{ _id, category_title (required, unique, trim), slug (unique, lowercase), isDeleted (default:false), createdAt, updatedAt }</pre></div>
+
+<div class="ssh" id="s3"><i class="fas fa-microchip"></i>5.3 — Technology Collection</div>
+<div class="cb"><div class="cbh"><span class="lt">Mongoose Schema — technologies</span><button class="cpb" onclick="cp(this)">Copy</button></div>
+<pre>{ _id, technology_title (required, unique, trim), slug (unique, lowercase), icon (String, default:null), isDeleted, createdAt, updatedAt }</pre></div>
+
+<div class="ssh" id="s4"><i class="fas fa-link"></i>5.4 — Slug & Skill Collections</div>
+<div class="cb"><div class="cbh"><span class="lt">Mongoose Schema — slugs & skills</span><button class="cpb" onclick="cp(this)">Copy</button></div>
+<pre><span class="cm">// slugs</span>
+{ _id, slug_title (required, unique, trim), slug (unique, lowercase), isDeleted, createdAt, updatedAt }
+
+<span class="cm">// skills</span>
+{ _id, skill_title (required, trim), skill_option (enum:<span class="str">"beginner"|"intermediate"|"expert"</span>, required),
+  slug (unique, lowercase), isDeleted, createdAt, updatedAt }</pre></div>
+
+<div class="ssh" id="s5"><i class="fas fa-rocket"></i>5.5 — Project, Service & Review Collections</div>
+<div class="cb"><div class="cbh"><span class="lt">Mongoose Schema — projects / services / reviews</span><button class="cpb" onclick="cp(this)">Copy</button></div>
+<pre><span class="cm">// projects (services has identical structure)</span>
+{
+  _id, title (required, trim), slug (unique, lowercase), description (required),
+  category (ObjectId ref:categories, required), technologies ([ObjectId ref:technologies]),
+  skills ([ObjectId ref:skills]), projectSlugs ([ObjectId ref:slugs]),
+  pictures ([String]),  <span class="cm">// Cloudinary URLs</span>
+  videos ([String]),    <span class="cm">// Cloudinary URLs</span>
+  livePreviewUrl (String, default:null), price (Number, default:0),
+  averageRating (Number, default:0, min:0, max:5),
+  totalReviews (Number, default:0), isDeleted, createdAt, updatedAt
+}
+
+<span class="cm">// reviews (shared for projects & services)</span>
+{
+  _id, user (ObjectId ref:users, required),
+  itemType (enum:<span class="str">"projects"|"services"</span>, required),
+  item (ObjectId, refPath:<span class="str">"itemType"</span>, required),
+  rating (Number, required, min:1, max:5),
+  reviewText (String, max:1000), isDeleted, createdAt, updatedAt
+}</pre></div>
+
+<div class="ssh" id="s6"><i class="fas fa-shopping-cart"></i>5.6 — Order Collection</div>
+<div class="cb"><div class="cbh"><span class="lt">Mongoose Schema — orders</span><button class="cpb" onclick="cp(this)">Copy</button></div>
+<pre>{
+  _id, orderNumber (String, unique),  <span class="cm">// "ORD-20260629-XXXXX"</span>
+  user (ObjectId ref:users, required),
+  items: [{
+    item (ObjectId, refPath:<span class="str">"itemType"</span>),
+    itemType (enum:<span class="str">"projects"|"services"</span>),
+    quantity (Number, default:1), price (Number, required)
+  }],
+  subtotal (Number, required), discountAmount (Number, default:0),
+  promoCode (ObjectId ref:promocodes, default:null),
+  totalAmount (Number, required),
+  paymentStatus (enum:<span class="str">"paid"|"not paid"</span>, default:<span class="str">"not paid"</span>),
+  orderStatus (enum:<span class="str">"sent"|"not sent"</span>, default:<span class="str">"not sent"</span>),
+  stripePaymentId (String, default:null), isDeleted, createdAt, updatedAt
+}</pre></div>
+
+<div class="ssh" id="s7"><i class="fas fa-ticket-alt"></i>5.7 — Promo Code Collection</div>
+<div class="cb"><div class="cbh"><span class="lt">Mongoose Schema — promocodes</span><button class="cpb" onclick="cp(this)">Copy</button></div>
+<pre>{
+  _id, promoCodeTitle (String, required, unique),  <span class="cm">// "SAVE30"</span>
+  minPurchaseAmount (Number, required),  <span class="cm">// e.g. 300</span>
+  discountPercentage (Number, required, min:1, max:100),
+  validFrom (Date, required), validTill (Date, required),
+  usageLimit (Number, required),  <span class="cm">// per user</span>
+  qualifiedUsers: [{ type: ObjectId, ref: <span class="str">"users"</span> }],
+  usageTracking: [{
+    user (ObjectId ref:users), usedCount (Number, default:0)
+  }],
+  isDeleted, createdAt, updatedAt
+}</pre></div>
+
+<div class="ssh" id="s8"><i class="fas fa-layer-group"></i>5.8 — Other 6 Collections</div>
+<div class="tw"><table class="dt"><thead><tr><th>Collection</th><th>Key Fields</th></tr></thead><tbody>
+<tr><td><strong>countries</strong></td><td><code>country_name</code>, <code>country_code</code> (e.g. "+92"), isDeleted, timestamps</td></tr>
+<tr><td><strong>cities</strong></td><td><code>city_name</code>, <code>country</code> (ref:countries), isDeleted, timestamps</td></tr>
+<tr><td><strong>galleries</strong></td><td><code>image</code> (Cloudinary URL), <code>publicId</code>, isDeleted, timestamps</td></tr>
+<tr><td><strong>banners</strong></td><td><code>image</code> (Cloudinary URL), <code>publicId</code>, isDeleted, timestamps</td></tr>
+<tr><td><strong>aboutus</strong></td><td><code>title</code>, <code>description</code>, <code>pictures</code>[], isDeleted, timestamps</td></tr>
+<tr><td><strong>blogs</strong></td><td><code>title</code>, <code>slug</code>, <code>description</code>, <code>content</code>, <code>pictures</code>[], isDeleted, timestamps</td></tr>
+<tr><td><strong>contactqueries</strong></td><td><code>name</code>, <code>email</code>, <code>subject</code>, <code>message</code>, <code>isReplied</code>, isDeleted, timestamps</td></tr>
+<tr><td><strong>chatbotconfigs</strong></td><td><code>instructions</code> (String, large text), updatedAt</td></tr>
+<tr><td><strong>resumes</strong></td><td><code>file</code> (Cloudinary URL), <code>publicId</code>, <code>originalName</code>, updatedAt — single doc</td></tr>
+</tbody></table></div>
+<div class="ib warn"><i class="fas fa-exclamation-triangle"></i><div><strong>Total: 13 collections.</strong> All use soft delete (isDeleted). All have createdAt + updatedAt.</div></div>
+
+<!-- 6 -->
+<div class="sh" id="api"><div class="hn">6</div><h2>API Routes (85+ Endpoints)</h2></div>
+<div class="ib info"><i class="fas fa-info-circle"></i><div>Base URL: <code>/api/v1</code> — Response: <code>{ success, message, data, pagination? }</code></div></div>
+
+<div class="ssh" id="a1"><i class="fas fa-lock"></i>6.1 — Auth Routes (12)</div>
+<div class="tw"><table class="dt"><thead><tr><th>Method</th><th>Endpoint</th><th>Access</th><th>Description</th></tr></thead><tbody>
+<tr><td><span class="tag tg">POST</span></td><td><code>/auth/signup</code></td><td><span class="tag tgr">Public</span></td><td>Register (name, email, password) → send verification email</td></tr>
+<tr><td><span class="tag tg">POST</span></td><td><code>/auth/verify-email/:token</code></td><td><span class="tag tgr">Public</span></td><td>Verify email → auto login with JWT httpOnly cookies</td></tr>
+<tr><td><span class="tag tg">POST</span></td><td><code>/auth/login</code></td><td><span class="tag tgr">Public</span></td><td>Login → if 2FA: return "2FA required" + temp token</td></tr>
+<tr><td><span class="tag tg">POST</span></td><td><code>/auth/verify-2fa</code></td><td><span class="tag tgr">Public</span></td><td>Verify 2FA OTP → issue JWT tokens</td></tr>
+<tr><td><span class="tag tg">POST</span></td><td><code>/auth/enable-2fa</code></td><td><span class="tag tp">User</span></td><td>Send OTP to email/mobile/whatsapp → Redis 30s</td></tr>
+<tr><td><span class="tag tg">POST</span></td><td><code>/auth/confirm-2fa</code></td><td><span class="tag tp">User</span></td><td>Verify OTP → enable 2FA on account</td></tr>
+<tr><td><span class="tag tb">POST</span></td><td><code>/auth/refresh-token</code></td><td><span class="tag tgr">Public</span></td><td>Refresh access token via refresh cookie</td></tr>
+<tr><td><span class="tag tr">POST</span></td><td><code>/auth/logout</code></td><td><span class="tag tp">User</span></td><td>Clear cookies, tokens, Redis sessions</td></tr>
+<tr><td><span class="tag tg">POST</span></td><td><code>/auth/forgot-password</code></td><td><span class="tag tgr">Public</span></td><td>Send OTP to email/mobile/whatsapp (30s Redis)</td></tr>
+<tr><td><span class="tag tg">POST</span></td><td><code>/auth/verify-otp</code></td><td><span class="tag tgr">Public</span></td><td>Verify OTP → issue temp reset token</td></tr>
+<tr><td><span class="tag to">POST</span></td><td><code>/auth/reset-password</code></td><td><span class="tag tgr">Public</span></td><td>Reset password (temp token + new password)</td></tr>
+<tr><td><span class="tag tb">POST</span></td><td><code>/auth/resend-otp</code></td><td><span class="tag tgr">Public</span></td><td>Resend OTP → invalidate previous in Redis</td></tr>
+</tbody></table></div>
+
+<div class="ssh" id="a2"><i class="fas fa-shield-alt"></i>6.2 — Admin Routes (50+, all require isAdmin)</div>
+<div class="ib info"><i class="fas fa-info-circle"></i><div>Each entity: <code>POST /</code> create, <code>GET /</code> list (search/filter/sort/paginate), <code>GET /:id</code> detail, <code>PUT /:id</code> update, <code>DELETE /:id</code> soft delete, <code>DELETE /delete-all</code> bulk soft, <code>DELETE /hard-delete/:id</code> permanent.</div></div>
+<div class="tw"><table class="dt"><thead><tr><th>Entity</th><th>Base Path</th><th>Special Notes</th></tr></thead><tbody>
+<tr><td><strong>Categories</strong></td><td><code>/admin/categories</code></td><td>Search by ID/title, filter by category/date/time</td></tr>
+<tr><td><strong>Technologies</strong></td><td><code>/admin/technologies</code></td><td>Search by ID/title, filter by technology/date/time</td></tr>
+<tr><td><strong>Slugs</strong></td><td><code>/admin/slugs</code></td><td>Search by ID/title, filter by slug/date/time</td></tr>
+<tr><td><strong>Skills</strong></td><td><code>/admin/skills</code></td><td>Search by ID/title/option, filter by option/date/time</td></tr>
+<tr><td><strong>Projects</strong></td><td><code>/admin/projects</code></td><td>Multipart (pics+videos). Cloudinary dedup. Detail with reviews</td></tr>
+<tr><td><strong>Services</strong></td><td><code>/admin/services</code></td><td>Same as projects. Cloudinary dedup</td></tr>
+<tr><td><strong>Users</strong></td><td><code>/admin/users</code></td><td>CANNOT change password/email. Toggle active. Search name/email</td></tr>
+<tr><td><strong>Countries</strong></td><td><code>/admin/countries</code></td><td>country_name + country_code. Filter by name/code/date</td></tr>
+<tr><td><strong>Cities</strong></td><td><code>/admin/cities</code></td><td>+ <code>GET /by-country/:countryId</code> for dropdown</td></tr>
+<tr><td><strong>Gallery</strong></td><td><code>/admin/gallery</code></td><td>Upload multiple, delete, delete-all. Cloudinary cleanup</td></tr>
+<tr><td><strong>Banners</strong></td><td><code>/admin/banners</code></td><td>Same as gallery</td></tr>
+<tr><td><strong>Orders</strong></td><td><code>/admin/orders</code></td><td>Read + detail. Send email (modal). Delete ONLY "sent". Delete-all skips "not sent"</td></tr>
+<tr><td><strong>Dashboard</strong></td><td><code>/admin/dashboard</code></td><td><code>GET /metrics</code>, <code>GET /analytics</code>, <code>GET /recent-activities</code></td></tr>
+<tr><td><strong>Promo Codes</strong></td><td><code>/admin/promo-codes</code></td><td>CRUD. Auto-qualify users → send notification mobile/whatsapp/email</td></tr>
+<tr><td><strong>Chatbot</strong></td><td><code>/admin/chatbot</code></td><td><code>GET/PUT /instructions</code></td></tr>
+<tr><td><strong>About Us</strong></td><td><code>/admin/about</code></td><td>CRUD with multiple pictures</td></tr>
+<tr><td><strong>Blogs</strong></td><td><code>/admin/blogs</code></td><td>CRUD with multiple pictures</td></tr>
+<tr><td><strong>Contact Queries</strong></td><td><code>/admin/contact-queries</code></td><td>Read + reply email + delete</td></tr>
+<tr><td><strong>Resume</strong></td><td><code>/admin/resume</code></td><td>Upload (replace), get, delete. Cloudinary cleanup</td></tr>
+<tr><td><strong>Admin Profile</strong></td><td><code>/admin/profile</code></td><td>GET/PUT profile, PUT avatar, PUT change-password</td></tr>
+</tbody></table></div>
+
+<div class="ssh" id="a3"><i class="fas fa-user-circle"></i>6.3 — User Routes (22)</div>
+<div class="tw"><table class="dt"><thead><tr><th>Method</th><th>Endpoint</th><th>Description</th></tr></thead><tbody>
+<tr><td><span class="tag tb">GET</span></td><td><code>/user/profile</code></td><td>Get own profile</td></tr>
+<tr><td><span class="tag to">PUT</span></td><td><code>/user/profile</code></td><td>Update name, mobile, country, city, address</td></tr>
+<tr><td><span class="tag to">PUT</span></td><td><code>/user/profile/avatar</code></td><td>Upload/change avatar</td></tr>
+<tr><td><span class="tag to">PUT</span></td><td><code>/user/profile/change-password</code></td><td>Change password</td></tr>
+<tr><td><span class="tag tb">GET</span></td><td><code>/user/wishlist</code></td><td>Get wishlist</td></tr>
+<tr><td><span class="tag tg">POST</span></td><td><code>/user/wishlist</code></td><td>Add to wishlist (itemType + itemId)</td></tr>
+<tr><td><span class="tag tr">DELETE</span></td><td><code>/user/wishlist/:id</code></td><td>Remove from wishlist</td></tr>
+<tr><td><span class="tag tb">GET</span></td><td><code>/user/cart</code></td><td>Get cart</td></tr>
+<tr><td><span class="tag tg">POST</span></td><td><code>/user/cart</code></td><td>Add to cart</td></tr>
+<tr><td><span class="tag to">PUT</span></td><td><code>/user/cart/:id</code></td><td>Update quantity</td></tr>
+<tr><td><span class="tag tr">DELETE</span></td><td><code>/user/cart/:id</code></td><td>Remove from cart</td></tr>
+<tr><td><span class="tag tg">POST</span></td><td><code>/user/orders/checkout</code></td><td>Place order (with/without payment, promo)</td></tr>
+<tr><td><span class="tag tg">POST</span></td><td><code>/user/orders/:id/pay</code></td><td>Pay for pending order (mock Stripe)</td></tr>
+<tr><td><span class="tag tb">GET</span></td><td><code>/user/orders</code></td><td>Get all my orders</td></tr>
+<tr><td><span class="tag tb">GET</span></td><td><code>/user/orders/:id</code></td><td>Get order detail</td></tr>
+<tr><td><span class="tag tg">POST</span></td><td><code>/user/orders/validate-promo</code></td><td>Validate promo code</td></tr>
+<tr><td><span class="tag tg">POST</span></td><td><code>/user/reviews</code></td><td>Add rating + review</td></tr>
+<tr><td><span class="tag to">PUT</span></td><td><code>/user/reviews/:id</code></td><td>Update own review</td></tr>
+<tr><td><span class="tag tr">DELETE</span></td><td><code>/user/reviews/:id</code></td><td>Delete own review</td></tr>
+<tr><td><span class="tag tb">GET</span></td><td><code>/user/countries</code></td><td>Active countries (dropdown)</td></tr>
+<tr><td><span class="tag tb">GET</span></td><td><code>/user/cities/:countryId</code></td><td>Cities by country (dropdown)</td></tr>
+</tbody></table></div>
+
+<div class="ssh" id="a4"><i class="fas fa-globe"></i>6.4 — Public Routes (17)</div>
+<div class="tw"><table class="dt"><thead><tr><th>Method</th><th>Endpoint</th><th>Description</th></tr></thead><tbody>
+<tr><td><span class="tag tb">GET</span></td><td><code>/public/projects</code></td><td>All projects (search, filter, sort, paginate)</td></tr>
+<tr><td><span class="tag tb">GET</span></td><td><code>/public/projects/:slug</code></td><td>Project detail by slug</td></tr>
+<tr><td><span class="tag tb">GET</span></td><td><code>/public/projects/:id/related</code></td><td>Related projects</td></tr>
+<tr><td><span class="tag tb">GET</span></td><td><code>/public/services</code></td><td>All services (search, filter, sort, paginate)</td></tr>
+<tr><td><span class="tag tb">GET</span></td><td><code>/public/services/:slug</code></td><td>Service detail by slug</td></tr>
+<tr><td><span class="tag tb">GET</span></td><td><code>/public/services/:id/related</code></td><td>Related services</td></tr>
+<tr><td><span class="tag tb">GET</span></td><td><code>/public/categories</code></td><td>All active categories</td></tr>
+<tr><td><span class="tag tb">GET</span></td><td><code>/public/technologies</code></td><td>All active technologies</td></tr>
+<tr><td><span class="tag tb">GET</span></td><td><code>/public/gallery</code></td><td>All gallery images</td></tr>
+<tr><td><span class="tag tb">GET</span></td><td><code>/public/banners</code></td><td>All active banners</td></tr>
+<tr><td><span class="tag tb">GET</span></td><td><code>/public/about</code></td><td>About us content</td></tr>
+<tr><td><span class="tag tb">GET</span></td><td><code>/public/blogs</code></td><td>All blogs</td></tr>
+<tr><td><span class="tag tb">GET</span></td><td><code>/public/blogs/:slug</code></td><td>Blog detail</td></tr>
+<tr><td><span class="tag tg">POST</span></td><td><code>/public/contact</code></td><td>Submit contact query</td></tr>
+<tr><td><span class="tag tb">GET</span></td><td><code>/public/resume</code></td><td>Resume download URL</td></tr>
+<tr><td><span class="tag tb">GET</span></td><td><code>/public/reviews/:itemType/:itemId</code></td><td>Reviews for item</td></tr>
+<tr><td><span class="tag tg">POST</span></td><td><code>/public/chatbot</code></td><td>AI chatbot message</td></tr>
+</tbody></table></div>
+
+<!-- 7 -->
+<div class="sh" id="fs"><div class="hn">7</div><h2>File Structure</h2></div>
+
+<div class="ssh" id="f1"><i class="fas fa-window-maximize"></i>7.1 — Frontend (Next.js App Router)</div>
+<div class="ft"><span class="fd">arsalan-portfolio/</span>
+├── <span class="fd">public/</span> favicon.ico, robots.txt
+│   └── <span class="fd">locales/</span> <span class="fc2">// i18n</span>
+│       ├── <span class="fimp">en/translation.json</span>
+│       ├── <span class="fimp">ur/translation.json</span>
+│       └── <span class="fimp">ar/translation.json</span>
+├── <span class="fd">src/app/</span> <span class="fc2">// Next.js App Router</span>
+│   ├── <span class="fimp">layout.jsx</span>      <span class="fc2">// Root: Redux, i18n, Theme, Toast</span>
+│   ├── <span class="fimp">page.jsx</span>        <span class="fc2">// Home (public)</span>
+│   ├── <span class="fimp">globals.css</span>     <span class="fc2">// CSS variables for themes</span>
+│   ├── <span class="fd">(public)/</span>
+│   │   ├── projects/page.jsx, [slug]/page.jsx
+│   │   ├── services/page.jsx, [slug]/page.jsx
+│   │   ├── about/page.jsx, contact/page.jsx
+│   │   ├── blogs/page.jsx, [slug]/page.jsx
+│   │   └── gallery/page.jsx
+│   ├── <span class="fd">(auth)/</span>
+│   │   ├── login/page.jsx, signup/page.jsx
+│   │   ├── verify-email/page.jsx
+│   │   ├── forgot-password/page.jsx
+│   │   ├── verify-otp/page.jsx
+│   │   └── reset-password/page.jsx
+│   ├── <span class="fd">(user)/</span>  <span class="fc2">// Protected user routes</span>
+│   │   ├── profile/page.jsx, wishlist/page.jsx
+│   │   ├── cart/page.jsx, checkout/page.jsx
+│   │   ├── orders/page.jsx, orders/[id]/page.jsx
+│   │   └── payment/page.jsx  <span class="fc2">// Mock Stripe</span>
+│   └── <span class="fd">(admin)/</span> <span class="fc2">// Protected admin routes</span>
+│       ├── dashboard/page.jsx
+│       ├── projects/ (page, create, edit/[id], [id])
+│       ├── services/ (same pattern)
+│       ├── categories/, technologies/, slugs/, skills/
+│       ├── users/, countries/, cities/
+│       ├── gallery/, banners/
+│       ├── orders/ (page + [id])
+│       ├── promo-codes/ (page + [id])
+│       ├── about/, blogs/, contact-queries/
+│       ├── chatbot/page.jsx, resume/page.jsx
+│       └── profile/page.jsx
+├── <span class="fd">src/components/</span>
+│   ├── <span class="fd">layout/</span>: Navbar, Footer, AdminSidebar, AdminHeader, MobileNav
+│   ├── <span class="fd">common/</span>: <span class="fimp">DataTable</span> (search/filter/sort/paginate/bulk),
+│   │   <span class="fimp">Modal</span>, <span class="fimp">ConfirmModal</span>, <span class="fimp">FormModal</span>, LoadingSpinner,
+│   │   Pagination, SearchBar, FilterDropdown, ImageUploader, VideoUploader,
+│   │   StarRating, ThemeToggle, LanguageSwitcher, ProtectedRoute, GuestRoute
+│   ├── <span class="fd">home/</span>: HeroSection, BannerSlider, TopProjects, TopServices,
+│   │   CategoriesSection, SkillsSection, StatsSection, CTASection
+│   ├── <span class="fd">projects/</span>: ProjectCard, ProjectFilters, ProjectDetailContent
+│   ├── <span class="fd">services/</span>: ServiceCard, ServiceFilters, ServiceDetailContent
+│   ├── <span class="fd">cart/</span>: CartItem, CartSummary
+│   ├── <span class="fd">orders/</span>: OrderCard, OrderDetail
+│   └── <span class="fd">chatbot/</span>: ChatbotWidget, ChatMessage
+├── <span class="fd">src/redux/</span>
+│   ├── <span class="fimp">store.js</span>
+│   └── <span class="fd">slices/</span>: authSlice, themeSlice, langSlice, cartSlice, wishlistSlice
+│   └── <span class="fd">thunks/</span>: authThunks, adminThunks, userThunks, publicThunks
+├── <span class="fd">src/services/</span>
+│   ├── <span class="fimp">axiosInstance.js</span>  <span class="fc2">// Interceptors, base URL, token refresh</span>
+│   ├── authService.js, adminService.js, userService.js, publicService.js
+├── <span class="fd">src/utils/</span>: constants.js, helpers.js, validation.js, cloudinaryConfig.js
+├── <span class="fd">src/hooks/</span>: useAuth, useTheme, useLanguage, useDataTable
+├── <span class="fd">src/i18n/</span>: config.js
+├── <span class="fd">src/styles/</span>: variables.css, components.css, admin.css, responsive.css
+├── next.config.js, package.json, .env.local</div>
+
+<div class="ssh" id="f2"><i class="fas fa-server"></i>7.2 — Backend (Express.js)</div>
+<div class="ft"><span class="fd">arsalan-portfolio-server/</span>
+├── <span class="fd">src/</span>
+│   ├── <span class="fimp">app.js</span>         <span class="fc2">// Express: middleware, routes, error handler</span>
+│   ├── <span class="fimp">server.js</span>      <span class="fc2">// Start: connect DB, Redis, listen</span>
+│   ├── <span class="fd">config/</span>: db.js, redis.js, cloudinary.js, stripe.js, twilio.js, nodemailer.js
+│   ├── <span class="fd">models/</span>  <span class="fc2">// 13+ Mongoose models</span>
+│   │   ├── User.js, Category.js, Technology.js, Slug.js, Skill.js
+│   │   ├── Project.js, Service.js, Review.js, Order.js
+│   │   ├── PromoCode.js, Country.js, City.js
+│   │   ├── Gallery.js, Banner.js, AboutUs.js, Blog.js
+│   │   ├── ContactQuery.js, ChatbotConfig.js, Resume.js
+│   │   └── index.js
+│   ├── <span class="fd">routes/</span>: auth.routes, admin.routes, user.routes, public.routes, index.js
+│   ├── <span class="fd">controllers/</span>
+│   │   ├── auth.controller.js
+│   │   ├── <span class="fd">admin/</span>: category, technology, slug, skill, project, service, user,
+│   │   │   country, city, gallery, banner, order, dashboard, promoCode,
+│   │   │   chatbot, about, blog, contactQuery, resume, adminProfile
+│   │   ├── user.controller.js, public.controller.js
+│   ├── <span class="fd">middlewares/</span>
+│   │   ├── <span class="fimp">auth.middleware.js</span>  <span class="fc2">// JWT verify (access + refresh)</span>
+│   │   ├── <span class="fimp">admin.middleware.js</span> <span class="fc2">// Check role === 'admin'</span>
+│   │   ├── <span class="fimp">rateLimiter.js</span>      <span class="fc2">// Redis-backed</span>
+│   │   ├── <span class="fimp">upload.middleware.js</span> <span class="fc2">// Multer + Cloudinary</span>
+│   │   ├── validate.middleware.js, error.middleware.js
+│   ├── <span class="fd">utils/</span>: helpers.js, jwtUtils.js, otpUtils.js, cloudinaryUtils.js,
+│   │   emailTemplates.js, ApiError.js
+│   ├── <span class="fd">validators/</span>: auth, admin, user, public
+│   └── <span class="fd">services/</span>
+│       ├── <span class="fimp">otp.service.js</span>      <span class="fc2">// Send OTP email/SMS/WhatsApp</span>
+│       ├── <span class="fimp">email.service.js</span>    <span class="fc2">// Verification, order, promo emails</span>
+│       ├── <span class="fimp">cloudinary.service.js</span><span class="fc2">// Upload, delete, duplicate check</span>
+│       ├── <span class="fimp">promo.service.js</span>    <span class="fc2">// Qualify, send, validate, apply</span>
+│       ├── <span class="fimp">chatbot.service.js</span>  <span class="fc2">// OpenAI integration</span>
+│       └── <span class="fimp">notification.service.js</span><span class="fc2">// WhatsApp on order send</span>
+├── package.json, .env</div>
+
+<!-- 8 -->
+<div class="sh" id="sec"><div class="hn">8</div><h2>Security Measures</h2></div>
+<ul class="fl">
+<li><i class="fas fa-check"></i><strong>JWT httpOnly Cookies:</strong> Access (15min) + Refresh (7d) — not in localStorage</li>
+<li><i class="fas fa-check"></i><strong>Bcrypt:</strong> 12 salt rounds for all passwords</li>
+<li><i class="fas fa-check"></i><strong>Redis Rate Limiting:</strong> Per-IP + per-user (100 req/15min public, 200 auth)</li>
+<li><i class="fas fa-check"></i><strong>Helmet.js:</strong> Security headers (CSP, X-Frame-Options)</li>
+<li><i class="fas fa-check"></i><strong>CORS:</strong> Strict origin whitelist</li>
+<li><i class="fas fa-check"></i><strong>Input Validation:</strong> All inputs validated server-side</li>
+<li><i class="fas fa-check"></i><strong>OTP: 30s in Redis</strong>, auto-deleted. Resend invalidates previous</li>
+<li><i class="fas fa-check"></i><strong>2FA:</strong> After login, if enabled → require OTP before tokens</li>
+<li><i class="fas fa-check"></i><strong>Route Protection:</strong> JWT check + role check. Direct URL blocked</li>
+<li><i class="fas fa-check"></i><strong>Complete Logout:</strong> Clear httpOnly cookies + Redis sessions</li>
+<li><i class="fas fa-check"></i><strong>No SQL Injection:</strong> Mongoose ODM only</li>
+<li><i class="fas fa-check"></i><strong>XSS Protection:</strong> React auto-escape + server sanitization</li>
+<li><i class="fas fa-check"></i><strong>File Upload:</strong> Multer limits + type validation + Cloudinary transforms</li>
+<li><i class="fas fa-check"></i><strong>Env Vars:</strong> All secrets in .env, never in git</li>
+</ul>
+
+<!-- 9 -->
+<div class="sh" id="feat"><div class="hn">9</div><h2>Features Detail</h2></div>
+
+<div class="ssh" id="fe1"><i class="fas fa-key"></i>9.1 — Auth & 2FA Flow</div>
+<div class="fd2"><div class="fs">Signup</div><div class="fa2"><i class="fas fa-arrow-right"></i></div><div class="fs">Send Verify Email</div><div class="fa2"><i class="fas fa-arrow-right"></i></div><div class="fs">Click Link</div><div class="fa2"><i class="fas fa-arrow-right"></i></div><div class="fs">Auto Login</div></div>
+<div class="fd2"><div class="fs">Login</div><div class="fa2"><i class="fas fa-arrow-right"></i></div><div class="fs">2FA?</div><div class="fa2"><i class="fas fa-arrow-right"></i></div><div class="fs">Send OTP</div><div class="fa2"><i class="fas fa-arrow-right"></i></div><div class="fs">Verify</div><div class="fa2"><i class="fas fa-arrow-right"></i></div><div class="fs">Tokens</div></div>
+<div class="fd2"><div class="fs">Forgot PW</div><div class="fa2"><i class="fas fa-arrow-right"></i></div><div class="fs">Find Mobile/Email</div><div class="fa2"><i class="fas fa-arrow-right"></i></div><div class="fs">OTP 30s</div><div class="fa2"><i class="fas fa-arrow-right"></i></div><div class="fs">Verify</div><div class="fa2"><i class="fas fa-arrow-right"></i></div><div class="fs">Reset</div></div>
+<div class="ib info"><i class="fas fa-info-circle"></i><div><strong>2FA OTP Priority:</strong> If mobile exists → send to mobile + WhatsApp + email. If no mobile → email only. 30s TTL in Redis. Resend invalidates previous.</div></div>
+<div class="ib warn"><i class="fas fa-exclamation-triangle"></i><div><strong>Forgot Password:</strong> Check mobile first → if found, send OTP there. If not → check email. If neither → error "Email or mobile not found".</div></div>
+
+<div class="ssh" id="fe2"><i class="fas fa-shield-alt"></i>9.2 — Admin Features</div>
+<ul class="fl">
+<li><i class="fas fa-check"></i><strong>Reusable DataTable:</strong> Search (configurable fields), filter (configurable + reset), sort (newest/recent/older), pagination (numbers + prev/next + "Showing 1 of 10"), bulk actions</li>
+<li><i class="fas fa-check"></i><strong>Detail Pages:</strong> Click row → detail page. Projects/Services show: all info, pictures, videos, skills, tech, slugs, category, reviews, ratings</li>
+<li><i class="fas fa-check"></i><strong>Cloudinary Dedup:</strong> Before upload, check hash. If identical → skip upload, delete dup. On update: remove orphaned. On delete: remove all associated</li>
+<li><i class="fas fa-check"></i><strong>Orders:</strong> Send email (modal: email + body + file attach). Delete ONLY "sent". Delete-all skips "not sent". Send button hidden if "not paid"</li>
+<li><i class="fas fa-check"></i><strong>Promo Codes:</strong> On create → find users where totalPurchased >= minAmount → add to qualified → send via mobile/whatsapp/email. Per-user limit tracked. If limit reached → modal warning</li>
+<li><i class="fas fa-check"></i><strong>Dashboard:</strong> Metrics cards + charts (orders over time, revenue, top items, user growth, ratings distribution) + recent activities</li>
+<li><i class="fas fa-check"></i><strong>Country/City Cascade:</strong> Select country → city dropdown filters. Mobile input shows readonly country code</li>
+<li><i class="fas fa-check"></i><strong>User Creation:</strong> Admin creates → verification email sent. CANNOT change user's password or email</li>
+</ul>
+
+<div class="ssh" id="fe3"><i class="fas fa-user"></i>9.3 — User Features</div>
+<ul class="fl">
+<li><i class="fas fa-check"></i><strong>Guest Access:</strong> Home, projects, services, details, about, contact, blogs, gallery, resume download</li>
+<li><i class="fas fa-check"></i><strong>Login Required:</strong> Wishlist, cart, checkout, orders, pay, rate/review, profile</li>
+<li><i class="fas fa-check"></i><strong>Cart Flow:</strong> Add items → checkout → optional Stripe payment → place order (can be "not paid") → pay later from orders</li>
+<li><i class="fas fa-check"></i><strong>Promo at Checkout:</strong> Enter code → validate → see discount → apply. Limit reached → warning modal</li>
+<li><i class="fas fa-check"></i><strong>Order Notification:</strong> Admin sends email → user gets WhatsApp "Order sent to your email"</li>
+<li><i class="fas fa-check"></i><strong>Profile:</strong> Edit info, avatar, password. Country → City cascade</li>
+</ul>
+
+<div class="ssh" id="fe4"><i class="fas fa-globe"></i>9.4 — Public Pages</div>
+<ul class="fl">
+<li><i class="fas fa-check"></i><strong>Home:</strong> Banner slider, top projects, top services, categories, skills, stats, CTA</li>
+<li><i class="fas fa-check"></i><strong>Projects/Services:</strong> Grid, filters (category, tech, skill, slug, rating), search, sort, pagination</li>
+<li><i class="fas fa-check"></i><strong>Detail:</strong> Gallery, info, metadata, related items, reviews, cart/wishlist (login check), live preview</li>
+<li><i class="fas fa-check"></i><strong>Contact:</strong> Form (name, email, subject, message) → no login needed</li>
+<li><i class="fas fa-check"></i><strong>AI Chatbot:</strong> Floating widget, OpenAI API, admin-configurable instructions</li>
+</ul>
+
+<div class="ssh" id="fe5"><i class="fas fa-language"></i>9.5 — i18n & Theme</div>
+<div class="dc"><div class="cl">Internationalization</div><p><code>i18next</code> + <code>react-i18next</code>. Translation JSON for EN, UR, AR. Language switcher in navbar. Urdu/Arabic = RTL (document.dir + document.lang update dynamically). Backend stays English — translation is frontend-only.</p></div>
+<div class="dc"><div class="cl">Light/Dark Theme</div><p>CSS custom properties in <code>:root</code> (dark) and <code>[data-theme="light"]</code>. Toggle in navbar. Saved in localStorage + Redux. 0.4s smooth transition. All components use variables only.</p></div>
+
+<!-- 10 -->
+<div class="sh" id="ph"><div class="hn">10</div><h2>7 Development Phases (~22 days)</h2></div>
+
+<div class="pc" id="p1">
+<div class="ph"><div class="pl"><div class="pn">1</div><div class="pt">Foundation & Setup</div></div><div class="pdur">~2 days</div></div>
+<div class="pd">Initialize projects, install deps, configure services, build base components.</div>
+<ul class="tl">
+<li><i class="fas fa-chevron-right"></i>Create Next.js 15 project (App Router) + Express.js backend</li>
+<li><i class="fas fa-chevron-right"></i>Install all 31 packages (see Tech Stack)</li>
+<li><i class="fas fa-chevron-right"></i>Setup MongoDB (Mongoose), Redis (ioredis)</li>
+<li><i class="fas fa-chevron-right"></i>Configure Cloudinary, Twilio, Nodemailer, Stripe</li>
+<li><i class="fas fa-chevron-right"></i>Setup .env / .env.local with all variables</li>
+<li><i class="fas fa-chevron-right"></i>Create all 13+ Mongoose models</li>
+<li><i class="fas fa-chevron-right"></i>Setup Redux store + all slices (auth, theme, lang, cart, wishlist)</li>
+<li><i class="fas fa-chevron-right"></i>Setup Axios instance with interceptors</li>
+<li><i class="fas fa-chevron-right"></i>Setup i18next with 3 language files</li>
+<li><i class="fas fa-chevron-right"></i>Setup CSS variables for dark/light themes</li>
+<li><i class="fas fa-chevron-right"></i>Build: Navbar, Footer, ThemeToggle, LanguageSwitcher</li>
+<li><i class="fas fa-chevron-right"></i>Build: DataTable, Modal, ConfirmModal, FormModal (reusable)</li>
+<li><i class="fas fa-chevron-right"></i>Setup Express middleware: cors, helmet, cookie-parser, morgan, rate limiter, error handler</li>
+</ul>
+</div>
+
+<div class="pc" id="p2">
+<div class="ph"><div class="pl"><div class="pn">2</div><div class="pt">Authentication System</div></div><div class="pdur">~3 days</div></div>
+<div class="pd">Complete auth: signup, verify, login, 2FA, logout, forgot/reset password.</div>
+<ul class="tl">
+<li><i class="fas fa-chevron-right"></i>JWT utils (generate access+refresh, verify)</li>
+<li><i class="fas fa-chevron-right"></i>OTP utils (generate 6-digit, Redis 30s TTL, verify, resend invalidate)</li>
+<li><i class="fas fa-chevron-right"></i>Auth middleware (verify access, verify refresh, admin check)</li>
+<li><i class="fas fa-chevron-right"></i>Signup API + email verification token + send email</li>
+<li><i class="fas fa-chevron-right"></i>Verify email → auto-login (httpOnly cookies)</li>
+<li><i class="fas fa-chevron-right"></i>Login → 2FA check → temp token or issue tokens</li>
+<li><i class="fas fa-chevron-right"></i>Enable/Confirm/Verify 2FA APIs</li>
+<li><i class="fas fa-chevron-right"></i>Refresh token, Logout (clear cookies+Redis)</li>
+<li><i class="fas fa-chevron-right"></i>Forgot password → find by mobile/email → OTP → reset</li>
+<li><i class="fas fa-chevron-right"></i>Frontend: Login, Signup, Verify Email, Forgot, OTP, Reset pages</li>
+<li><i class="fas fa-chevron-right"></i>Frontend: ProtectedRoute, GuestRoute, Redux auth thunks</li>
+<li><i class="fas fa-chevron-right"></i>Axios interceptor: auto refresh on 401</li>
+<li><i class="fas fa-chevron-right"></i>Seed admin user in database</li>
+</ul>
+</div>
+
+<div class="pc" id="p3">
+<div class="ph"><div class="pl"><div class="pn">3</div><div class="pt">Admin Core — All CRUD Entities</div></div><div class="pdur">~5 days</div></div>
+<div class="pd">All admin CRUD with DataTable, modals, uploads, Cloudinary dedup.</div>
+<ul class="tl">
+<li><i class="fas fa-chevron-right"></i>Admin layout: AdminSidebar, AdminHeader, responsive</li>
+<li><i class="fas fa-chevron-right"></i>Upload middleware (multer+Cloudinary) + dedup utility</li>
+<li><i class="fas fa-chevron-right"></i>Categories CRUD: table, create/edit modal, detail page</li>
+<li><i class="fas fa-chevron-right"></i>Technologies CRUD, Slugs CRUD, Skills CRUD</li>
+<li><i class="fas fa-chevron-right"></i>Projects CRUD: multi-image+video, Cloudinary dedup, detail+reviews</li>
+<li><i class="fas fa-chevron-right"></i>Services CRUD (same as projects)</li>
+<li><i class="fas fa-chevron-right"></i>Countries CRUD, Cities CRUD + cascade dropdown</li>
+<li><i class="fas fa-chevron-right"></i>Users: create (send verify email), read, edit (NOT pw/email), toggle, delete</li>
+<li><i class="fas fa-chevron-right"></i>Gallery: upload multiple, delete, delete-all, Cloudinary cleanup</li>
+<li><i class="fas fa-chevron-right"></i>Banners: same as gallery</li>
+<li><i class="fas fa-chevron-right"></i>Admin Profile: edit, avatar (dedup), change password</li>
+<li><i class="fas fa-chevron-right"></i>Resume: upload (replace), view, delete</li>
+<li><i class="fas fa-chevron-right"></i>Country/City cascade + auto country code in all relevant forms</li>
+</ul>
+</div>
+
+<div class="pc" id="p4">
+<div class="ph"><div class="pl"><div class="pn">4</div><div class="pt">User Features — Cart, Orders, Reviews</div></div><div class="pdur">~3 days</div></div>
+<div class="pd">Wishlist, cart, checkout, orders, promo codes, ratings/reviews.</div>
+<ul class="tl">
+<li><i class="fas fa-chevron-right"></i>Wishlist: add/remove/view (API + page + Redux)</li>
+<li><i class="fas fa-chevron-right"></i>Cart: add/remove/update quantity/view (API + page + Redux)</li>
+<li><i class="fas fa-chevron-right"></i>Checkout: summary, promo input, place order (with/without payment)</li>
+<li><i class="fas fa-chevron-right"></i>Mock Stripe payment page → mark paid</li>
+<li><i class="fas fa-chevron-right"></i>Pay later from orders page</li>
+<li><i class="fas fa-chevron-right"></i>Orders list + detail page</li>
+<li><i class="fas fa-chevron-right"></i>Reviews: add/edit/delete rating+text on projects/services</li>
+<li><i class="fas fa-chevron-right"></i>User profile: edit, avatar, change password</li>
+<li><i class="fas fa-chevron-right"></i>Promo code validation at checkout</li>
+</ul>
+</div>
+
+<div class="pc" id="p5">
+<div class="ph"><div class="pl"><div class="pn">5</div><div class="pt">Public Frontend Pages</div></div><div class="pdur">~4 days</div></div>
+<div class="pd">All guest pages with filters, search, pagination, responsive.</div>
+<ul class="tl">
+<li><i class="fas fa-chevron-right"></i>Home: hero, banner slider, top projects/services, categories, skills, stats, CTA</li>
+<li><i class="fas fa-chevron-right"></i>Projects: grid, filters, search, sort, pagination</li>
+<li><i class="fas fa-chevron-right"></i>Project detail: gallery, info, related, reviews, cart/wishlist</li>
+<li><i class="fas fa-chevron-right"></i>Services + Service detail (same pattern)</li>
+<li><i class="fas fa-chevron-right"></i>About Us, Contact Us (form), Blogs + detail</li>
+<li><i class="fas fa-chevron-right"></i>Gallery (image grid + lightbox), Resume download</li>
+<li><i class="fas fa-chevron-right"></i>All public API routes</li>
+</ul>
+</div>
+
+<div class="pc" id="p6">
+<div class="ph"><div class="pl"><div class="pn">6</div><div class="pt">Advanced Features</div></div><div class="pdur">~3 days</div></div>
+<div class="pd">Dashboard analytics, promo system, order management, AI chatbot, content.</div>
+<ul class="tl">
+<li><i class="fas fa-chevron-right"></i>Dashboard: metrics, charts (orders, revenue, top items, growth, ratings), recent activities</li>
+<li><i class="fas fa-chevron-right"></i>Promo: create → auto-qualify → send notification → validate → apply → limit enforcement</li>
+<li><i class="fas fa-chevron-right"></i>Orders: admin table, detail, send email (modal+files), delete logic (only "sent"), WhatsApp notify</li>
+<li><i class="fas fa-chevron-right"></i>AI Chatbot: OpenAI integration, admin instructions editor, floating widget</li>
+<li><i class="fas fa-chevron-right"></i>About CRUD + public page, Blogs CRUD + public pages</li>
+<li><i class="fas fa-chevron-right"></i>Contact Queries: admin table, detail, reply via email</li>
+</ul>
+</div>
+
+<div class="pc" id="p7">
+<div class="ph"><div class="pl"><div class="pn">7</div><div class="pt">Polish, Testing & Deployment</div></div><div class="pdur">~2 days</div></div>
+<div class="pd">Responsive testing, RTL, error handling, performance, deploy.</div>
+<ul class="tl">
+<li><i class="fas fa-chevron-right"></i>Full responsive testing: mobile, tablet, laptop, desktop, iPad</li>
+<li><i class="fas fa-chevron-right"></i>RTL testing for Urdu and Arabic</li>
+<li><i class="fas fa-chevron-right"></i>Toast for every action, modal confirmations for destructive actions</li>
+<li><i class="fas fa-chevron-right"></i>Loading states, empty states, error boundaries, 404/500 pages</li>
+<li><i class="fas fa-chevron-right"></i>Route protection testing (direct URL, search bar access)</li>
+<li><i class="fas fa-chevron-right"></i>Performance: lazy loading, code splitting, Redis caching</li>
+<li><i class="fas fa-chevron-right"></i>Deploy: Vercel (frontend) + Railway (backend)</li>
+<li><i class="fas fa-chevron-right"></i>Setup MongoDB Atlas + Redis Cloud (Upstash)</li>
+<li><i class="fas fa-chevron-right"></i>End-to-end testing of all flows</li>
+</ul>
+</div>
+
+<!-- 11 -->
+<div class="sh" id="env"><div class="hn">11</div><h2>Environment Variables</h2></div>
+<div class="ssh" style="color:var(--abl)"><i class="fas fa-window-maximize"></i>Frontend (.env.local)</div>
+<div class="cb"><div class="cbh"><span class="lt">env</span><button class="cpb" onclick="cp(this)">Copy</button></div>
+<pre>NEXT_PUBLIC_API_BASE_URL=http://localhost:5000/api/v1
+NEXT_PUBLIC_APP_NAME="Arsalan Portfolio"
+NEXT_PUBLIC_DEFAULT_LANGUAGE=en</pre></div>
+<div class="ssh" style="color:var(--apl)"><i class="fas fa-server"></i>Backend (.env)</div>
+<div class="cb"><div class="cbh"><span class="lt">env</span><button class="cpb" onclick="cp(this)">Copy</button></div>
+<pre>PORT=5000
+NODE_ENV=development
+
+<span class="cm"># MongoDB</span>
+MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/arsalan-portfolio
+
+<span class="cm"># Redis</span>
+REDIS_URL=redis://default:pass@redis-host:6379
+
+<span class="cm"># JWT</span>
+JWT_ACCESS_SECRET=your-super-secret-access-key-min-32-chars
+JWT_REFRESH_SECRET=your-super-secret-refresh-key-min-32-chars
+JWT_ACCESS_EXPIRY=15m
+JWT_REFRESH_EXPIRY=7d
+
+<span class="cm"># Cloudinary</span>
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+CLOUDINARY_FOLDER=arsalan-portfolio
+
+<span class="cm"># Nodemailer (Gmail)</span>
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-app-password
+FROM_EMAIL=noreply@arsalan-portfolio.com
+FROM_NAME="Arsalan Portfolio"
+
+<span class="cm"># Twilio</span>
+TWILIO_ACCOUNT_SID=your_sid
+TWILIO_AUTH_TOKEN=your_token
+TWILIO_PHONE_NUMBER=+1234567890
+TWILIO_WHATSAPP_NUMBER=whatsapp:+1234567890
+
+<span class="cm"># Stripe (Mock)</span>
+STRIPE_SECRET_KEY=sk_test_xxx
+STRIPE_PUBLISHABLE_KEY=pk_test_xxx
+
+<span class="cm"># OpenAI</span>
+OPENAI_API_KEY=sk-xxx
+
+<span class="cm"># CORS</span>
+FRONTEND_URL=http://localhost:3000
+
+<span class="cm"># Admin Seed</span>
+ADMIN_NAME="Arsalan Akhtar"
+ADMIN_EMAIL=jaffri.arsalan786@gmail.com
+ADMIN_PASSWORD=Admin@123456</pre></div>
+
+<!-- 12 -->
+<div class="sh" id="tp2"><div class="hn">12</div><h2>Third-Party Services</h2></div>
+<div class="tw"><table class="dt"><thead><tr><th>Service</th><th>Purpose</th><th>Tier</th><th>Notes</th></tr></thead><tbody>
+<tr><td><strong>MongoDB Atlas</strong></td><td>Database</td><td>Free M0</td><td>512MB, sufficient</td></tr>
+<tr><td><strong>Upstash Redis</strong></td><td>OTP + Rate Limit</td><td>Free</td><td>Serverless-friendly</td></tr>
+<tr><td><strong>Cloudinary</strong></td><td>Media</td><td>Free 25GB</td><td>Sufficient for portfolio</td></tr>
+<tr><td><strong>Twilio</strong></td><td>SMS + WhatsApp</td><td>Free trial</td><td>Test with verified numbers</td></tr>
+<tr><td><strong>Gmail SMTP</strong></td><td>Email</td><td>Free</td><td>App Password required</td></tr>
+<tr><td><strong>Stripe</strong></td><td>Payments</td><td>Test mode</td><td>No real charges</td></tr>
+<tr><td><strong>OpenAI</strong></td><td>Chatbot</td><td>Pay-per-use</td><td>GPT-4o-mini for economy</td></tr>
+<tr><td><strong>Vercel</strong></td><td>Frontend host</td><td>Free Hobby</td><td>Auto-deploy from GitHub</td></tr>
+<tr><td><strong>Railway</strong></td><td>Backend host</td><td>Free tier</td><td>Dynamic PORT</td></tr>
+</tbody></table></div>
+
+<!-- 13 -->
+<div class="sh" id="dep"><div class="hn">13</div><h2>Deployment Plan</h2></div>
+<div class="fd2">
+<div class="fs">GitHub Push</div><div class="fa2"><i class="fas fa-arrow-right"></i></div>
+<div class="fs">Vercel (FE)</div><div class="fa2"><i class="fas fa-arrow-right"></i></div>
+<div class="fs">Railway (BE)</div><div class="fa2"><i class="fas fa-arrow-right"></i></div>
+<div class="fs">Atlas + Redis</div>
+</div>
+<ul class="fl">
+<li><i class="fas fa-check"></i><strong>Frontend:</strong> GitHub → Vercel auto-deploy → set <code>NEXT_PUBLIC_API_BASE_URL</code></li>
+<li><i class="fas fa-check"></i><strong>Backend:</strong> GitHub → Railway → set all .env vars → use <code>process.env.PORT</code></li>
+<li><i class="fas fa-check"></i><strong>DB:</strong> Atlas → whitelist IPs → update connection string</li>
+<li><i class="fas fa-check"></i><strong>Redis:</strong> Upstash → REST URL in backend</li>
+<li><i class="fas fa-check"></i><strong>Domain:</strong> Custom domain on Vercel → update CORS + FRONTEND_URL</li>
+<li><i class="fas fa-check"></i><strong>SSL:</strong> Free from Vercel + Railway</li>
+</ul>
+<div class="ib ok"><i class="fas fa-check-circle"></i><div><strong>Estimated Total: ~22 days</strong> full-time. Each phase builds on previous. We proceed phase by phase, testing each before moving on. Ready to start Phase 1?</div></div>
+
+<footer class="dft">
+<div class="fb">Arsalan Akhtar Portfolio SaaS</div><br>
+Complete Project Document v1.0 — June 2026
+</footer>
+</div>
+
+<script>
+// Theme
+var tb=document.getElementById('themeToggle'),ht=document.documentElement;
+function st(t){ht.setAttribute('data-theme',t);localStorage.setItem('td',t);tb.innerHTML=t==='dark'?'<i class="fas fa-moon"></i>':'<i class="fas fa-sun"></i>'}
+tb.onclick=function(){st(ht.getAttribute('data-theme')==='dark'?'light':'dark')};
+st(localStorage.getItem('td')||'dark');
+
+// Sidebar mobile
+var sd=document.getElementById('side'),ov=document.getElementById('mov'),mg=document.getElementById('mtog');
+mg.onclick=function(){sd.classList.toggle('open');ov.classList.toggle('open')};
+ov.onclick=function(){sd.classList.remove('open');ov.classList.remove('open')};
+
+// Active TOC on scroll
+var links=document.querySelectorAll('.side a'),secs=[];
+links.forEach(function(l){var id=l.getAttribute('href');if(id&&id.length>1)secs.push({id:id.substring(1),el:document.getElementById(id.substring(1)),lnk:l})});
+function ua(){var c=secs[0];for(var i=0;i<secs.length;i++){if(secs[i].el&&secs[i].el.getBoundingClientRect().top<=100)c=secs[i]}links.forEach(function(l){l.classList.remove('on')});if(c)c.lnk.classList.add('on')}
+window.addEventListener('scroll',ua,{passive:true});
+
+// Close sidebar on link click (mobile)
+links.forEach(function(l){l.addEventListener('click',function(){if(window.innerWidth<=992){sd.classList.remove('open');ov.classList.remove('open')}})});
+
+// Copy code
+function cp(b){var p=b.closest('.cb').querySelector('pre');navigator.clipboard.writeText(p.textContent).then(function(){var o=b.textContent;b.textContent='Copied!';b.style.color='#4ade80';b.style.borderColor='#22c55e';setTimeout(function(){b.textContent=o;b.style.color='';b.style.borderColor=''},1200)})}
+</script>
+</body>
+</html>

@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arsalan Portfolio — Full Stack SaaS</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* ─── THEME VARIABLES ─── */
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #18182a;
+            --bg-input: #1a1a2e;
+            --border-color: #2a2a42;
+            --text-primary: #f0f0f5;
+            --text-secondary: #a0a0b8;
+            --text-muted: #6a6a82;
+            --accent-purple: #8b5cf6;
+            --accent-purple-light: #a78bfa;
+            --accent-blue: #38bdf8;
+            --accent-blue-light: #7dd3fc;
+            --gradient-main: linear-gradient(135deg, #8b5cf6, #38bdf8);
+            --shadow-card: 0 0 40px rgba(139, 92, 246, .12);
+            --shadow-glow: 0 0 30px rgba(139, 92, 246, .08);
+        }
+
+        [data-theme="light"] {
+            --bg-primary: #f4f6fc;
+            --bg-secondary: #ffffff;
+            --bg-card: #ffffff;
+            --bg-input: #f0f1f5;
+            --border-color: #dce3f0;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a4a62;
+            --text-muted: #8a8aa2;
+            --shadow-card: 0 4px 30px rgba(124, 58, 237, .08);
+            --shadow-glow: 0 0 20px rgba(124, 58, 237, .04);
+        }
+
+        /* ─── RESET & BASE ─── */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            transition: background 0.3s ease, color 0.3s ease;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--accent-purple-light);
+        }
+        a:hover {
+            color: var(--accent-blue-light);
+        }
+
+        /* ─── SCROLLBAR ─── */
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-primary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 9px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-purple);
+        }
+
+        /* ─── ORB BACKGROUND ─── */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.08;
+            pointer-events: none;
+            z-index: 0;
+            animation: orbFloat 20s ease-in-out infinite;
+        }
+        .orb-1 {
+            width: 500px;
+            height: 500px;
+            background: var(--accent-purple);
+            top: -150px;
+            right: -80px;
+        }
+        .orb-2 {
+            width: 400px;
+            height: 400px;
+            background: var(--accent-blue);
+            bottom: -100px;
+            left: -60px;
+            animation-delay: -7s;
+        }
+        @keyframes orbFloat {
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+            50% {
+                transform: translate(25px, -30px);
+            }
+        }
+
+        /* ─── TOPBAR ─── */
+        .topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            z-index: 1000;
+            background: rgba(10, 10, 15, .88);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            transition: background 0.3s;
+        }
+        [data-theme="light"] .topbar {
+            background: rgba(255, 255, 255, .92);
+        }
+        .brand {
+            font-weight: 700;
+            font-size: 1rem;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .brand span {
+            font-weight: 400;
+            opacity: .6;
+            -webkit-text-fill-color: var(--text-muted);
+        }
+        .topbar-actions {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .tbtn {
+            background: var(--bg-input);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            width: 36px;
+            height: 36px;
+            border-radius: 9px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: .3s;
+            font-size: .9rem;
+        }
+        .tbtn:hover {
+            border-color: var(--accent-purple);
+            box-shadow: 0 0 12px rgba(139, 92, 246, .2);
+        }
+        .lang-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: .7rem;
+            cursor: pointer;
+            font-weight: 500;
+            transition: .3s;
+        }
+        .lang-btn:hover {
+            border-color: var(--accent-purple);
+            color: var(--text-primary);
+        }
+        .lang-btn.active {
+            border-color: var(--accent-purple);
+            color: var(--accent-purple-light);
+            background: rgba(139, 92, 246, .1);
+        }
+
+        /* ─── SIDEBAR ─── */
+        .sidebar {
+            position: fixed;
+            top: 56px;
+            left: 0;
+            width: 260px;
+            height: calc(100vh - 56px);
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            overflow-y: auto;
+            z-index: 900;
+            padding: 12px 0;
+            transition: transform .35s ease;
+        }
+        .sidebar::-webkit-scrollbar {
+            width: 3px;
+        }
+        .sidebar::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 9px;
+        }
+        .sidebar .ttl {
+            font-size: .6rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-muted);
+            padding: 0 14px;
+            margin-bottom: 5px;
+        }
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 6px 14px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: .75rem;
+            transition: .2s;
+            border-left: 2px solid transparent;
+        }
+        .sidebar a:hover {
+            color: var(--text-primary);
+            background: rgba(139, 92, 246, .05);
+        }
+        .sidebar a.active {
+            color: var(--accent-purple-light);
+            border-left-color: var(--accent-purple);
+            background: rgba(139, 92, 246, .08);
+        }
+        .sidebar a i {
+            font-size: .4rem;
+            width: 10px;
+            text-align: center;
+        }
+        .sd {
+            height: 1px;
+            background: var(--border-color);
+            margin: 5px 14px;
+        }
+
+        /* ─── MAIN CONTENT ─── */
+        .main-wrap {
+            margin-left: 260px;
+            padding: 72px 32px 60px;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            text-align: center;
+            padding: 20px 0 16px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background: var(--gradient-main);
+            border-radius: 2px;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: rgba(139, 92, 246, .12);
+            color: var(--accent-purple-light);
+            font-size: .68rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 50px;
+            border: 1px solid rgba(139, 92, 246, .2);
+            margin-bottom: 10px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+        .gradient-text {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero p {
+            color: var(--text-secondary);
+            font-size: .92rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ─── SECTION HEADERS ─── */
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            padding-top: 20px;
+            margin-top: 8px;
+        }
+        .section-number {
+            width: 28px;
+            height: 28px;
+            border-radius: 7px;
+            background: var(--gradient-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: .7rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .section-header h2 {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+        .sub-header {
+            font-size: .98rem;
+            font-weight: 600;
+            color: var(--accent-purple-light);
+            margin: 14px 0 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .sub-header i {
+            font-size: .75rem;
+        }
+
+        /* ─── CARDS ─── */
+        .doc-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 8px;
+            transition: .3s;
+        }
+        .doc-card:hover {
+            border-color: rgba(139, 92, 246, .3);
+            box-shadow: var(--shadow-glow);
+        }
+        .doc-card .cl {
+            font-size: .6rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+        }
+        .doc-card h4 {
+            font-size: .88rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+        .doc-card p {
+            color: var(--text-secondary);
+            font-size: .8rem;
+            margin: 0;
+        }
+
+        /* ─── TABLES ─── */
+        .table-wrap {
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 8px 0 12px;
+        }
+        .doc-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: .76rem;
+        }
+        .doc-table thead th {
+            background: var(--bg-input);
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: .64rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 8px 10px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .doc-table tbody td {
+            padding: 6px 10px;
+            border-bottom: 1px solid rgba(42, 42, 66, .35);
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+        .doc-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        .doc-table tbody tr:hover {
+            background: rgba(139, 92, 246, .03);
+        }
+        .doc-table code {
+            font-family: 'JetBrains Mono', monospace;
+            background: rgba(139, 92, 246, .1);
+            color: var(--accent-purple-light);
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-size: .7rem;
+        }
+
+        /* ─── CODE BLOCKS ─── */
+        .code-block {
+            background: #0d0d14;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            margin: 6px 0 10px;
+            overflow: hidden;
+        }
+        [data-theme="light"] .code-block {
+            background: #f0f1f5;
+        }
+        .code-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 10px;
+            background: rgba(255, 255, 255, .03);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .code-header .lang-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .6rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .copy-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: .6rem;
+            padding: 2px 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'JetBrains Mono', monospace;
+            transition: .2s;
+        }
+        .copy-btn:hover {
+            color: var(--accent-purple-light);
+            border-color: var(--accent-purple);
+        }
+        .code-block pre {
+            padding: 10px 12px;
+            overflow-x: auto;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: .7rem;
+            line-height: 1.55;
+            color: #c8c8e0;
+            margin: 0;
+            white-space: pre;
+            tab-size: 2;
+        }
+        .kw {
+            color: #c792ea;
+        }
+        .str {
+            color: #c3e88d;
+        }
+        .num {
+            color: #f78c6c;
+        }
+        .cm {
+            color: #546e7a;
+            font-style: italic;
+        }
+        .fn {
+            color: #82aaff;
+        }
+        .type {
+            color: #ffcb6b;
+        }
+        .var {
+            color: #f07178;
+        }
+
+        /* ─── TAGS ─── */
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            font-size: .64rem;
+            font-weight: 500;
+            padding: 2px 6px;
+            border-radius: 4px;
+            white-space: nowrap;
+        }
+        .tag-green {
+            background: rgba(34, 197, 94, .12);
+            color: #4ade80;
+        }
+        .tag-blue {
+            background: rgba(56, 189, 248, .12);
+            color: var(--accent-blue-light);
+        }
+        .tag-orange {
+            background: rgba(245, 158, 11, .12);
+            color: #fbbf24;
+        }
+        .tag-red {
+            background: rgba(239, 68, 68, .12);
+            color: #f87171;
+        }
+        .tag-gray {
+            background: rgba(148, 148, 170, .1);
+            color: var(--text-secondary);
+        }
+        .tag-purple {
+            background: rgba(139, 92, 246, .12);
+            color: var(--accent-purple-light);
+        }
+
+        /* ─── FLOW ─── */
+        .flow-row {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            flex-wrap: wrap;
+            margin: 8px 0 12px;
+            padding: 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+        .flow-step {
+            background: rgba(139, 92, 246, .1);
+            border: 1px solid rgba(139, 92, 246, .25);
+            color: var(--accent-purple-light);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: .68rem;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+        .flow-arrow {
+            color: var(--text-muted);
+            font-size: .75rem;
+        }
+
+        /* ─── STATS GRID ─── */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 8px;
+            margin: 8px 0 12px;
+        }
+        .stat-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            transition: .3s;
+        }
+        .stat-item:hover {
+            border-color: rgba(139, 92, 246, .3);
+        }
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .stat-label {
+            font-size: .6rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        /* ─── INFO BOXES ─── */
+        .info-box {
+            border-radius: 8px;
+            padding: 10px 12px;
+            margin: 8px 0;
+            font-size: .78rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+        .info-box i {
+            margin-top: 2px;
+            flex-shrink: 0;
+            font-size: .85rem;
+        }
+        .info-box.info {
+            background: rgba(56, 189, 248, .08);
+            border: 1px solid rgba(56, 189, 248, .2);
+            color: var(--accent-blue-light);
+        }
+        .info-box.warn {
+            background: rgba(245, 158, 11, .08);
+            border: 1px solid rgba(245, 158, 11, .2);
+            color: #fbbf24;
+        }
+        .info-box.success {
+            background: rgba(34, 197, 94, .08);
+            border: 1px solid rgba(34, 197, 94, .2);
+            color: #4ade80;
+        }
+
+        /* ─── FEATURE LIST ─── */
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 6px 0 10px;
+        }
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+            padding: 4px 0;
+            font-size: .8rem;
+            color: var(--text-secondary);
+        }
+        .feature-list li i {
+            color: #4ade80;
+            margin-top: 3px;
+            font-size: .65rem;
+            flex-shrink: 0;
+        }
+        .feature-list li strong {
+            color: var(--text-primary);
+        }
+
+        /* ─── PHASE CARD ─── */
+        .phase-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 10px;
+            position: relative;
+            overflow: hidden;
+            transition: .35s;
+        }
+        .phase-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--gradient-main);
+            border-radius: 0 4px 4px 0;
+        }
+        .phase-card:hover {
+            border-color: rgba(139, 92, 246, .3);
+            box-shadow: var(--shadow-glow);
+            transform: translateY(-2px);
+        }
+        .phase-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .phase-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .phase-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--gradient-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-weight: 700;
+            font-size: .82rem;
+        }
+        .phase-title {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .phase-dur {
+            font-size: .64rem;
+            color: var(--text-muted);
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .phase-desc {
+            color: var(--text-secondary);
+            font-size: .82rem;
+            margin-bottom: 8px;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            z-index: 1100;
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
+            background: var(--gradient-main);
+            color: #fff;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, .4);
+        }
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .5);
+            z-index: 899;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 8px;
+            margin: 8px 0 12px;
+        }
+        .feature-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+            transition: .3s;
+        }
+        .feature-box:hover {
+            border-color: rgba(139, 92, 246, .3);
+            transform: translateY(-2px);
+        }
+        .feature-box i {
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+            display: block;
+        }
+        .feature-box .ft {
+            font-size: .75rem;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+        .feature-box .fd {
+            font-size: .64rem;
+            color: var(--text-muted);
+        }
+
+        .footer-note {
+            margin-top: 24px;
+            padding: 16px 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            color: var(--text-muted);
+            font-size: .72rem;
+        }
+        .footer-note .brand-foot {
+            background: var(--gradient-main);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+            font-size: .82rem;
+        }
+
+        /* ─── RESPONSIVE BREAKPOINTS ─── */
+        @media (max-width: 992px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .mobile-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .mobile-overlay.open {
+                display: block;
+            }
+            .main-wrap {
+                margin-left: 0;
+                padding: 68px 14px 50px;
+            }
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .flow-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .flow-arrow {
+                transform: rotate(90deg);
+                text-align: center;
+            }
+            .topbar {
+                padding: 0 10px;
+            }
+            .brand span {
+                display: none;
+            }
+        }
+
+        @media print {
+            .sidebar,
+            .topbar,
+            .mobile-toggle,
+            .mobile-overlay,
+            .orb {
+                display: none !important;
+            }
+            .main-wrap {
+                margin-left: 0 !important;
+                padding: 10px !important;
+            }
+            body {
+                background: #fff !important;
+                color: #000 !important;
+            }
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ─── ORBS ─── -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+
+    <!-- ─── TOPBAR ─── -->
+    <header class="topbar">
+        <div class="brand">Arsalan Portfolio <span>| SaaS v1.0</span></div>
+        <div class="topbar-actions">
+            <button class="lang-btn active">EN</button>
+            <button class="lang-btn">UR</button>
+            <button class="lang-btn">AR</button>
+            <button class="tbtn" id="themeToggle" title="Toggle Theme">
+                <i class="fas fa-moon"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- ─── SIDEBAR ─── -->
+    <aside class="sidebar" id="sidebar">
+        <div class="ttl">📖 Navigation</div>
+        <a href="#overview" class="active"><i class="fas fa-circle"></i>Overview</a>
+        <a href="#stats"><i class="fas fa-circle"></i>Key Stats</a>
+        <div class="sd"></div>
+        <a href="#techstack"><i class="fas fa-circle"></i>Tech Stack</a>
+        <a href="#architecture"><i class="fas fa-circle"></i>Architecture</a>
+        <div class="sd"></div>
+        <a href="#database"><i class="fas fa-circle"></i>Database (13)</a>
+        <a href="#api"><i class="fas fa-circle"></i>API Routes (85+)</a>
+        <div class="sd"></div>
+        <a href="#files"><i class="fas fa-circle"></i>File Structure</a>
+        <a href="#security"><i class="fas fa-circle"></i>Security</a>
+        <a href="#features"><i class="fas fa-circle"></i>Features</a>
+        <a href="#phases"><i class="fas fa-circle"></i>Phases (~22d)</a>
+        <a href="#env"><i class="fas fa-circle"></i>Environment</a>
+        <a href="#deploy"><i class="fas fa-circle"></i>Deployment</a>
+    </aside>
+
+    <div class="mobile-overlay" id="overlay"></div>
+    <button class="mobile-toggle" id="menuToggle"><i class="fas fa-bars"></i></button>
+
+    <!-- ─── MAIN CONTENT ─── -->
+    <main class="main-wrap" id="mainWrap">
+
+        <!-- ═══ OVERVIEW ═══ -->
+        <section id="overview">
+            <div class="hero">
+                <div class="hero-badge"><i class="fas fa-code-branch"></i> Document v1.0 — June 2026</div>
+                <h1>Arsalan Akhtar <span class="gradient-text">Portfolio SaaS</span></h1>
+                <p>Complete Technical Specification · Database Design · API Architecture · Development Roadmap</p>
+            </div>
+
+            <div class="doc-card">
+                <div class="cl">📌 Description</div>
+                <p>A comprehensive, production-ready SaaS portfolio web application for Arsalan Akhtar (Full-Stack Software Engineer). Showcases projects, services, blogs. Users can browse, add to cart, place orders with mock Stripe payments, rate/review, manage profiles. Admin has full control over all content, users, orders, promo codes, analytics, AI chatbot. Trilingual (EN, UR, AR), light/dark themes, fully responsive across all devices.</p>
+            </div>
+
+            <div class="doc-card">
+                <div class="cl">🎨 Design Direction</div>
+                <h4>Upwork-Inspired with Custom Theme</h4>
+                <p>Professional, clean layout inspired by Upwork's UI patterns — card-based layouts, clear hierarchy, structured tables — with a distinctive purple + light blue + black + gray gradient theme. No default blue/purple cliché.</p>
+            </div>
+        </section>
+
+        <!-- ═══ STATS ═══ -->
+        <section id="stats">
+            <div class="section-header"><div class="section-number">1</div><h2>Key Statistics</h2></div>
+            <div class="stats-grid">
+                <div class="stat-item"><div class="stat-number">13</div><div class="stat-label">DB Collections</div></div>
+                <div class="stat-item"><div class="stat-number">85+</div><div class="stat-label">API Endpoints</div></div>
+                <div class="stat-item"><div class="stat-number">25+</div><div class="stat-label">Frontend Pages</div></div>
+                <div class="stat-item"><div class="stat-number">7</div><div class="stat-label">Dev Phases</div></div>
+                <div class="stat-item"><div class="stat-number">2</div><div class="stat-label">User Roles</div></div>
+                <div class="stat-item"><div class="stat-number">3</div><div class="stat-label">Languages</div></div>
+            </div>
+        </section>
+
+        <!-- ═══ TECH STACK ═══ -->
+        <section id="techstack">
+            <div class="section-header"><div class="section-number">2</div><h2>Tech Stack &amp; Versions (June 2026)</h2></div>
+            <div class="table-wrap">
+                <table class="doc-table">
+                    <thead><tr><th>Technology</th><th>Version</th><th>Purpose</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>Next.js</strong></td><td><code>16.2.10</code></td><td>Frontend Framework (App Router)</td></tr>
+                        <tr><td><strong>React</strong></td><td><code>19.2.4</code></td><td>UI Library</td></tr>
+                        <tr><td><strong>Node.js</strong></td><td><code>24.x LTS</code></td><td>Backend Runtime</td></tr>
+                        <tr><td><strong>Express.js</strong></td><td><code>5.1.x</code></td><td>Backend Web Framework</td></tr>
+                        <tr><td><strong>MongoDB</strong></td><td><code>8.x</code></td><td>Primary Database</td></tr>
+                        <tr><td><strong>Mongoose</strong></td><td><code>8.12.x</code></td><td>ODM for MongoDB</td></tr>
+                        <tr><td><strong>Redis</strong></td><td><code>7.4.x</code></td><td>OTP, Rate Limit, Cache</td></tr>
+                        <tr><td><strong>Redux Toolkit</strong></td><td><code>2.12.x</code></td><td>Global State Management</td></tr>
+                        <tr><td><strong>Axios</strong></td><td><code>1.18.x</code></td><td>HTTP Client</td></tr>
+                        <tr><td><strong>JWT</strong></td><td><code>9.0.x</code></td><td>Access + Refresh Token Auth</td></tr>
+                        <tr><td><strong>Bcryptjs</strong></td><td><code>2.4.x</code></td><td>Password Hashing</td></tr>
+                        <tr><td><strong>Cloudinary</strong></td><td><code>2.7.x</code></td><td>Image &amp; Video Storage</td></tr>
+                        <tr><td><strong>Twilio</strong></td><td><code>5.6.x</code></td><td>SMS + WhatsApp OTP</td></tr>
+                        <tr><td><strong>Nodemailer</strong></td><td><code>7.0.x</code></td><td>Email Sending</td></tr>
+                        <tr><td><strong>Stripe</strong></td><td><code>18.x</code></td><td>Mock Payment Gateway</td></tr>
+                        <tr><td><strong>OpenAI</strong></td><td><code>4.x</code></td><td>AI Chatbot</td></tr>
+                        <tr><td><strong>Bootstrap</strong></td><td><code>5.3.8</code></td><td>Responsive Grid &amp; Components</td></tr>
+                        <tr><td><strong>i18next</strong></td><td><code>25.x</code></td><td>Internationalization</td></tr>
+                        <tr><td><strong>react-hot-toast</strong></td><td><code>2.6.x</code></td><td>Toast Notifications</td></tr>
+                        <tr><td><strong>Framer Motion</strong></td><td><code>12.42.x</code></td><td>Animations</td></tr>
+                        <tr><td><strong>Helmet</strong></td><td><code>8.1.x</code></td><td>Security Headers</td></tr>
+                        <tr><td><strong>express-rate-limit</strong></td><td><code>7.5.x</code></td><td>Rate Limiting</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info-box info"><i class="fas fa-info-circle"></i><div>All versions are latest stable as of June 2026. Run <code>npm install package@latest</code> during setup.</div></div>
+        </section>
+
+        <!-- ═══ ARCHITECTURE ═══ -->
+        <section id="architecture">
+            <div class="section-header"><div class="section-number">3</div><h2>System Architecture</h2></div>
+            <div class="feature-grid">
+                <div class="feature-box"><i class="fas fa-desktop" style="color:var(--accent-purple)"></i><div class="ft">Next.js Frontend</div><div class="fd">App Router, Redux, i18n</div></div>
+                <div class="feature-box"><i class="fas fa-server" style="color:var(--accent-blue)"></i><div class="ft">Express Backend</div><div class="fd">REST API, JWT, Rate Limit</div></div>
+                <div class="feature-box"><i class="fas fa-database" style="color:#4ade80"></i><div class="ft">MongoDB</div><div class="fd">13 Collections, Mongoose</div></div>
+                <div class="feature-box"><i class="fas fa-bolt" style="color:#fbbf24"></i><div class="ft">Redis</div><div class="fd">OTP, Rate Limit, Cache</div></div>
+                <div class="feature-box"><i class="fas fa-cloud" style="color:var(--accent-blue)"></i><div class="ft">Cloudinary</div><div class="fd">Media, Dedup</div></div>
+                <div class="feature-box"><i class="fas fa-credit-card" style="color:var(--accent-purple-light)"></i><div class="ft">Stripe (Mock)</div><div class="fd">Payment Simulation</div></div>
+            </div>
+
+            <div class="sub-header"><i class="fas fa-project-diagram"></i>Request Flow</div>
+            <div class="flow-row">
+                <span class="flow-step">Browser</span>
+                <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+                <span class="flow-step">Next.js</span>
+                <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+                <span class="flow-step">Redux Thunk</span>
+                <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+                <span class="flow-step">Axios</span>
+                <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+                <span class="flow-step">Rate Limiter</span>
+                <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+                <span class="flow-step">JWT Middleware</span>
+                <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+                <span class="flow-step">Controller</span>
+                <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+                <span class="flow-step">Mongoose</span>
+                <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+                <span class="flow-step">MongoDB</span>
+            </div>
+        </section>
+
+        <!-- ═══ DATABASE ═══ -->
+        <section id="database">
+            <div class="section-header"><div class="section-number">4</div><h2>Database Schemas — 13 Collections</h2></div>
+
+            <div class="sub-header"><i class="fas fa-user"></i>User Collection</div>
+            <div class="code-block">
+                <div class="code-header"><span class="lang-tag">Mongoose — users</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+                <pre>{
+  <span class="var">_id</span>:              <span class="type">ObjectId</span>,
+  <span class="var">name</span>:              { type: String, required: true, trim: true },
+  <span class="var">email</span>:             { type: String, required: true, unique: true },
+  <span class="var">password</span>:          { type: String, required: true, min: 8 },  <span class="cm">// bcrypt</span>
+  <span class="var">role</span>:              { type: String, enum: [<span class="str">"admin"</span>,<span class="str">"user"</span>], default: <span class="str">"user"</span> },
+  <span class="var">isEmailVerified</span>:   { type: Boolean, default: false },
+  <span class="var">isActive</span>:          { type: Boolean, default: true },
+  <span class="var">is2FAEnabled</span>:     { type: Boolean, default: false },
+  <span class="var">avatar</span>:            { type: String, default: null },
+  <span class="var">mobile</span>:            { type: String, default: null },
+  <span class="var">country</span>:           { type: ObjectId, ref: <span class="str">"countries"</span> },
+  <span class="var">city</span>:              { type: ObjectId, ref: <span class="str">"cities"</span> },
+  <span class="var">address</span>:           { type: String, default: null },
+  <span class="var">wishlist</span>:          [{ type: ObjectId, ref: <span class="str">"projects"</span> }],
+  <span class="var">cart</span>:              [{ item: ObjectId, itemType: <span class="str">"projects"|"services"</span>, quantity: 1 }],
+  <span class="var">totalPurchased</span>:    { type: Number, default: 0 },
+  <span class="var">refreshToken</span>:      { type: String, select: false },
+  <span class="var">isDeleted</span>:         { type: Boolean, default: false },
+  <span class="var">createdAt</span>, <span class="var">updatedAt</span>
+}</pre>
+            </div>
+
+            <div class="sub-header"><i class="fas fa-folder"></i>Category · Technology · Slug · Skill</div>
+            <div class="code-block">
+                <div class="code-header"><span class="lang-tag">Mongoose — categories / technologies / slugs / skills</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+                <pre><span class="cm">// Category</span>
+{ _id, <span class="var">category_title</span> (unique), <span class="var">slug</span> (unique), <span class="var">isDeleted</span>, <span class="var">createdAt</span>, <span class="var">updatedAt</span> }
+
+<span class="cm">// Technology</span>
+{ _id, <span class="var">technology_title</span> (unique), <span class="var">slug</span> (unique), <span class="var">icon</span>, <span class="var">isDeleted</span>, <span class="var">createdAt</span>, <span class="var">updatedAt</span> }
+
+<span class="cm">// Slug</span>
+{ _id, <span class="var">slug_title</span> (unique), <span class="var">slug</span> (unique), <span class="var">isDeleted</span>, <span class="var">createdAt</span>, <span class="var">updatedAt</span> }
+
+<span class="cm">// Skill</span>
+{ _id, <span class="var">skill_title</span>, <span class="var">skill_option</span> (<span class="str">"beginner"|"intermediate"|"expert"</span>), <span class="var">slug</span>, <span class="var">isDeleted</span>, <span class="var">createdAt</span>, <span class="var">updatedAt</span> }</pre>
+            </div>
+
+            <div class="sub-header"><i class="fas fa-rocket"></i>Project · Service · Review</div>
+            <div class="code-block">
+                <div class="code-header"><span class="lang-tag">Mongoose — projects / services / reviews</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+                <pre><span class="cm">// Projects (Services have identical structure)</span>
+{
+  _id, <span class="var">title</span> (required), <span class="var">slug</span> (unique), <span class="var">description</span> (required),
+  <span class="var">category</span> (ref:categories), <span class="var">technologies</span> [ref:technologies],
+  <span class="var">skills</span> [ref:skills], <span class="var">projectSlugs</span> [ref:slugs],
+  <span class="var">pictures</span> [String], <span class="var">videos</span> [String],  <span class="cm">// Cloudinary URLs</span>
+  <span class="var">livePreviewUrl</span>, <span class="var">price</span> (default:0),
+  <span class="var">averageRating</span> (0-5), <span class="var">totalReviews</span>, <span class="var">isDeleted</span>, <span class="var">createdAt</span>, <span class="var">updatedAt</span>
+}
+
+<span class="cm">// Reviews (shared for projects & services)</span>
+{
+  _id, <span class="var">user</span> (ref:users), <span class="var">itemType</span> (<span class="str">"projects"|"services"</span>),
+  <span class="var">item</span> (refPath), <span class="var">rating</span> (1-5), <span class="var">reviewText</span>, <span class="var">isDeleted</span>, <span class="var">createdAt</span>, <span class="var">updatedAt</span>
+}</pre>
+            </div>
+
+            <div class="sub-header"><i class="fas fa-shopping-cart"></i>Order · Promo Code</div>
+            <div class="code-block">
+                <div class="code-header"><span class="lang-tag">Mongoose — orders / promocodes</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+                <pre><span class="cm">// Order</span>
+{
+  _id, <span class="var">orderNumber</span> (unique), <span class="var">user</span> (ref:users),
+  <span class="var">items</span>: [{ item (refPath), itemType (<span class="str">"projects"|"services"</span>), quantity, price }],
+  <span class="var">subtotal</span>, <span class="var">discountAmount</span>, <span class="var">promoCode</span> (ref:promocodes),
+  <span class="var">totalAmount</span>, <span class="var">paymentStatus</span> (<span class="str">"paid"|"not paid"</span>),
+  <span class="var">orderStatus</span> (<span class="str">"sent"|"not sent"</span>), <span class="var">stripePaymentId</span>, <span class="var">isDeleted</span>, <span class="var">createdAt</span>, <span class="var">updatedAt</span>
+}
+
+<span class="cm">// Promo Code</span>
+{
+  _id, <span class="var">promoCodeTitle</span> (unique), <span class="var">minPurchaseAmount</span>,
+  <span class="var">discountPercentage</span> (1-100), <span class="var">validFrom</span>, <span class="var">validTill</span>,
+  <span class="var">usageLimit</span> (per user), <span class="var">qualifiedUsers</span> [ref:users],
+  <span class="var">usageTracking</span>: [{ user (ref:users), usedCount }],
+  <span class="var">isDeleted</span>, <span class="var">createdAt</span>, <span class="var">updatedAt</span>
+}</pre>
+            </div>
+
+            <div class="sub-header"><i class="fas fa-layer-group"></i>Other 6 Collections</div>
+            <div class="table-wrap">
+                <table class="doc-table">
+                    <thead><tr><th>Collection</th><th>Key Fields</th></tr></thead>
+                    <tbody>
+                        <tr><td><strong>countries</strong></td><td><code>country_name</code>, <code>country_code</code> (e.g. "+92"), isDeleted, timestamps</td></tr>
+                        <tr><td><strong>cities</strong></td><td><code>city_name</code>, <code>country</code> (ref), isDeleted, timestamps</td></tr>
+                        <tr><td><strong>galleries</strong></td><td><code>image</code> (Cloudinary URL), <code>publicId</code>, isDeleted, timestamps</td></tr>
+                        <tr><td><strong>banners</strong></td><td><code>image</code> (Cloudinary URL), <code>publicId</code>, isDeleted, timestamps</td></tr>
+                        <tr><td><strong>aboutus</strong></td><td><code>title</code>, <code>description</code>, <code>pictures</code>[], isDeleted, timestamps</td></tr>
+                        <tr><td><strong>blogs</strong></td><td><code>title</code>, <code>slug</code>, <code>description</code>, <code>content</code>, <code>pictures</code>[], isDeleted, timestamps</td></tr>
+                        <tr><td><strong>contactqueries</strong></td><td><code>name</code>, <code>email</code>, <code>subject</code>, <code>message</code>, <code>isReplied</code>, isDeleted</td></tr>
+                        <tr><td><strong>chatbotconfigs</strong></td><td><code>instructions</code> (large text), updatedAt</td></tr>
+                        <tr><td><strong>resumes</strong></td><td><code>file</code> (Cloudinary URL), <code>publicId</code>, <code>originalName</code>, updatedAt — single doc</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="info-box warn"><i class="fas fa-exclamation-triangle"></i><div><strong>Total: 13 collections.</strong> All use soft delete (isDeleted). All have createdAt + updatedAt.</div></div>
+        </section>
+
+        <!-- ═══ API ═══ -->
+        <section id="api">
+            <div class="section-header"><div class="section-number">5</div><h2>API Routes (85+ Endpoints)</h2></div>
+            <div class="info-box info"><i class="fas fa-info-circle"></i><div>Base URL: <code>/api/v1</code> — Response: <code>{ success, message, data, pagination? }</code></div></div>
+
+            <div class="sub-header"><i class="fas fa-lock"></i>Auth Routes (12)</div>
+            <div class="table-wrap">
+                <table class="doc-table">
+                    <thead><tr><th>Method</th><th>Endpoint</th><th>Access</th><th>Description</th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="tag tag-green">POST</span></td><td><code>/auth/signup</code></td><td><span class="tag tag-gray">Public</span></td><td>Register → send verification email</td></tr>
+                        <tr><td><span class="tag tag-green">POST</span></td><td><code>/auth/verify-email/:token</code></td><td><span class="tag tag-gray">Public</span></td><td>Verify → auto-login with httpOnly cookies</td></tr>
+                        <tr><td><span class="tag tag-green">POST</span></td><td><code>/auth/login</code></td><td><span class="tag tag-gray">Public</span></td><td>Login → 2FA check → temp token or tokens</td></tr>
+                        <tr><td><span class="tag tag-green">POST</span></td><td><code>/auth/verify-2fa</code></td><td><span class="tag tag-gray">Public</span></td><td>Verify 2FA OTP → issue JWT tokens</td></tr>
+                        <tr><td><span class="tag tag-green">POST</span></td><td><code>/auth/enable-2fa</code></td><td><span class="tag tag-purple">User</span></td><td>Send OTP to email/mobile/whatsapp</td></tr>
+                        <tr><td><span class="tag tag-green">POST</span></td><td><code>/auth/confirm-2fa</code></td><td><span class="tag tag-purple">User</span></td><td>Verify OTP → enable 2FA</td></tr>
+                        <tr><td><span class="tag tag-blue">POST</span></td><td><code>/auth/refresh-token</code></td><td><span class="tag tag-gray">Public</span></td><td>Refresh access token via refresh cookie</td></tr>
+                        <tr><td><span class="tag tag-red">POST</span></td><td><code>/auth/logout</code></td><td><span class="tag tag-purple">User</span></td><td>Clear cookies, tokens, Redis sessions</td></tr>
+                        <tr><td><span class="tag tag-green">POST</span></td><td><code>/auth/forgot-password</code></td><td><span class="tag tag-gray">Public</span></td><td>Send OTP to email/mobile (30s Redis)</td></tr>
+                        <tr><td><span class="tag tag-green">POST</span></td><td><code>/auth/verify-otp</code></td><td><span class="tag tag-gray">Public</span></td><td>Verify OTP → issue temp reset token</td></tr>
+                        <tr><td><span class="tag tag-orange">POST</span></td><td><code>/auth/reset-password</code></td><td><span class="tag tag-gray">Public</span></td><td>Reset password with temp token</td></tr>
+                        <tr><td><span class="tag tag-blue">POST</span></td><td><code>/auth/resend-otp</code></td><td><span class="tag tag-gray">Public</span></td><td>Resend OTP → invalidate previous</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="sub-header"><i class="fas fa-shield-alt"></i>Admin Routes (50+)</div>
+            <div class="info-box info"><i class="fas fa-info-circle"></i><div>Each entity: <code>POST /</code> create, <code>GET /</code> list (search/filter/sort/paginate), <code>GET /:id</code> detail, <code>PUT /:id</code> update, <code>DELETE /:id</code> soft delete, <code>DELETE /delete-all</code> bulk, <code>DELETE /hard-delete/:id</code> permanent.</div></div>
+            <div class="table-wrap">
+                <table class="doc-table">
+                    <thead><tr><th>Entity</th><th>Base Path</th><th>Special Notes</th></tr></thead>
+                    <tbody>
+                        <tr><td>Categories</td><td><code>/admin/categories</code></td><td>Search by ID/title, filter by category/date</td></tr>
+                        <tr><td>Technologies</td><td><code>/admin/technologies</code></td><td>Search by ID/title, filter by technology/date</td></tr>
+                        <tr><td>Slugs</td><td><code>/admin/slugs</code></td><td>Search by ID/title, filter by slug/date</td></tr>
+                        <tr><td>Skills</td><td><code>/admin/skills</code></td><td>Search by ID/title/option, filter by option/date</td></tr>
+                        <tr><td>Projects</td><td><code>/admin/projects</code></td><td>Multipart (pics+videos). Cloudinary dedup. Detail with reviews</td></tr>
+                        <tr><td>Services</td><td><code>/admin/services</code></td><td>Same as projects. Cloudinary dedup</td></tr>
+                        <tr><td>Users</td><td><code>/admin/users</code></td><td>CANNOT change password/email. Toggle active</td></tr>
+                        <tr><td>Countries</td><td><code>/admin/countries</code></td><td>country_name + country_code</td></tr>
+                        <tr><td>Cities</td><td><code>/admin/cities</code></td><td>+ <code>GET /by-country/:countryId</code></td></tr>
+                        <tr><td>Gallery</td><td><code>/admin/gallery</code></td><td>Upload multiple, delete, Cloudinary cleanup</td></tr>
+                        <tr><td>Banners</td><td><code>/admin/banners</code></td><td>Same as gallery</td></tr>
+                        <tr><td>Orders</td><td><code>/admin/orders</code></td><td>Read + detail. Send email (modal). Delete ONLY "sent"</td></tr>
+                        <tr><td>Dashboard</td><td><code>/admin/dashboard</code></td><td>Metrics, analytics, recent activities</td></tr>
+                        <tr><td>Promo Codes</td><td><code>/admin/promo-codes</code></td><td>CRUD. Auto-qualify users → send notification</td></tr>
+                        <tr><td>Chatbot</td><td><code>/admin/chatbot</code></td><td><code>GET/PUT /instructions</code></td></tr>
+                        <tr><td>About Us</td><td><code>/admin/about</code></td><td>CRUD with multiple pictures</td></tr>
+                        <tr><td>Blogs</td><td><code>/admin/blogs</code></td><td>CRUD with multiple pictures</td></tr>
+                        <tr><td>Contact Queries</td><td><code>/admin/contact-queries</code></td><td>Read + reply email + delete</td></tr>
+                        <tr><td>Resume</td><td><code>/admin/resume</code></td><td>Upload (replace), get, delete</td></tr>
+                        <tr><td>Admin Profile</td><td><code>/admin/profile</code></td><td>GET/PUT profile, PUT avatar, PUT change-password</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="sub-header"><i class="fas fa-user-circle"></i>User Routes (22)</div>
+            <div class="table-wrap">
+                <table class="doc-table">
+                    <thead><tr><th>Method</th><th>Endpoint</th><th>Description</th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/user/profile</code></td><td>Get own profile</td></tr>
+                        <tr><td><span class="tag tag-orange">PUT</span></td><td><code>/user/profile</code></td><td>Update name, mobile, country, city, address</td></tr>
+                        <tr><td><span class="tag tag-orange">PUT</span></td><td><code>/user/profile/avatar</code></td><td>Upload/change avatar</td></tr>
+                        <tr><td><span class="tag tag-orange">PUT</span></td><td><code>/user/profile/change-password</code></td><td>Change password</td></tr>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/user/wishlist</code></td><td>Get wishlist</td></tr>
+                        <tr><td><span class="tag tag-green">POST</span></td><td><code>/user/wishlist</code></td><td>Add to wishlist</td></tr>
+                        <tr><td><span class="tag tag-red">DELETE</span></td><td><code>/user/wishlist/:id</code></td><td>Remove from wishlist</td></tr>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/user/cart</code></td><td>Get cart</td></tr>
+                        <tr><td><span class="tag tag-green">POST</span></td><td><code>/user/cart</code></td><td>Add to cart</td></tr>
+                        <tr><td><span class="tag tag-orange">PUT</span></td><td><code>/user/cart/:id</code></td><td>Update quantity</td></tr>
+                        <tr><td><span class="tag tag-red">DELETE</span></td><td><code>/user/cart/:id</code></td><td>Remove from cart</td></tr>
+                        <tr><td><span class="tag tag-green">POST</span></td><td><code>/user/orders/checkout</code></td><td>Place order (with/without payment)</td></tr>
+                        <tr><td><span class="tag tag-green">POST</span></td><td><code>/user/orders/:id/pay</code></td><td>Pay for pending order (mock Stripe)</td></tr>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/user/orders</code></td><td>Get all my orders</td></tr>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/user/orders/:id</code></td><td>Get order detail</td></tr>
+                        <tr><td><span class="tag tag-green">POST</span></td><td><code>/user/orders/validate-promo</code></td><td>Validate promo code</td></tr>
+                        <tr><td><span class="tag tag-green">POST</span></td><td><code>/user/reviews</code></td><td>Add rating + review</td></tr>
+                        <tr><td><span class="tag tag-orange">PUT</span></td><td><code>/user/reviews/:id</code></td><td>Update own review</td></tr>
+                        <tr><td><span class="tag tag-red">DELETE</span></td><td><code>/user/reviews/:id</code></td><td>Delete own review</td></tr>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/user/countries</code></td><td>Active countries (dropdown)</td></tr>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/user/cities/:countryId</code></td><td>Cities by country (dropdown)</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="sub-header"><i class="fas fa-globe"></i>Public Routes (17)</div>
+            <div class="table-wrap">
+                <table class="doc-table">
+                    <thead><tr><th>Method</th><th>Endpoint</th><th>Description</th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/public/projects</code></td><td>All projects (search, filter, sort, paginate)</td></tr>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/public/projects/:slug</code></td><td>Project detail by slug</td></tr>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/public/projects/:id/related</code></td><td>Related projects</td></tr>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/public/services</code></td><td>All services (search, filter, sort, paginate)</td></tr>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/public/services/:slug</code></td><td>Service detail by slug</td></tr>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/public/services/:id/related</code></td><td>Related services</td></tr>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/public/categories</code></td><td>All active categories</td></tr>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/public/technologies</code></td><td>All active technologies</td></tr>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/public/gallery</code></td><td>All gallery images</td></tr>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/public/banners</code></td><td>All active banners</td></tr>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/public/about</code></td><td>About us content</td></tr>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/public/blogs</code></td><td>All blogs</td></tr>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/public/blogs/:slug</code></td><td>Blog detail</td></tr>
+                        <tr><td><span class="tag tag-green">POST</span></td><td><code>/public/contact</code></td><td>Submit contact query</td></tr>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/public/resume</code></td><td>Resume download URL</td></tr>
+                        <tr><td><span class="tag tag-blue">GET</span></td><td><code>/public/reviews/:itemType/:itemId</code></td><td>Reviews for item</td></tr>
+                        <tr><td><span class="tag tag-green">POST</span></td><td><code>/public/chatbot</code></td><td>AI chatbot message</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- ═══ FILE STRUCTURE ═══ -->
+        <section id="files">
+            <div class="section-header"><div class="section-number">6</div><h2>File Structure</h2></div>
+
+            <div class="sub-header"><i class="fas fa-window-maximize"></i>Frontend (Next.js 16 — App Router)</div>
+            <div class="code-block">
+                <div class="code-header"><span class="lang-tag">Directory</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+                <pre><span class="fd">portfolio-saas/client/</span>
+├── <span class="fd">public/</span> favicon.ico
+│   └── <span class="fd">locales/</span> en/ ur/ ar/   <span class="cm">// i18n JSON</span>
+├── <span class="fd">src/</span>
+│   ├── <span class="fd">app/</span>
+│   │   ├── <span class="fimp">layout.jsx</span>        <span class="cm">// Root: Redux, i18n, Theme, Toast</span>
+│   │   ├── <span class="fimp">page.jsx</span>          <span class="cm">// Home (public)</span>
+│   │   ├── <span class="fimp">globals.css</span>       <span class="cm">// CSS variables for themes</span>
+│   │   ├── <span class="fd">(public)/</span>          <span class="cm">// Guest routes</span>
+│   │   │   ├── projects/page.jsx & [slug]/page.jsx
+│   │   │   ├── services/page.jsx & [slug]/page.jsx
+│   │   │   ├── about/page.jsx, contact/page.jsx
+│   │   │   ├── blogs/page.jsx & [slug]/page.jsx
+│   │   │   └── gallery/page.jsx
+│   │   ├── <span class="fd">(auth)/</span>            <span class="cm">// Auth routes (login, signup, etc.)</span>
+│   │   │   ├── login/page.jsx, signup/page.jsx
+│   │   │   ├── verify-email/page.jsx
+│   │   │   ├── forgot-password/page.jsx
+│   │   │   ├── verify-otp/page.jsx
+│   │   │   └── reset-password/page.jsx
+│   │   ├── <span class="fd">(user)/</span>            <span class="cm">// Protected user routes</span>
+│   │   │   ├── profile/page.jsx, wishlist/page.jsx
+│   │   │   ├── cart/page.jsx, checkout/page.jsx
+│   │   │   ├── orders/page.jsx & [id]/page.jsx
+│   │   │   └── payment/page.jsx   <span class="cm">// Mock Stripe</span>
+│   │   └── <span class="fd">(admin)/</span>           <span class="cm">// Protected admin routes</span>
+│   │       ├── dashboard/page.jsx
+│   │       ├── projects/ (page, create, edit/[id], [id])
+│   │       ├── services/ (same)
+│   │       ├── categories/, technologies/, slugs/, skills/
+│   │       ├── users/, countries/, cities/
+│   │       ├── gallery/, banners/
+│   │       ├── orders/ (page + [id])
+│   │       ├── promo-codes/ (page + [id])
+│   │       ├── about/, blogs/, contact-queries/
+│   │       ├── chatbot/page.jsx, resume/page.jsx
+│   │       └── profile/page.jsx
+│   ├── <span class="fd">components/</span>
+│   │   ├── <span class="fd">layout/</span>: Navbar, Footer, AdminSidebar, AdminHeader
+│   │   ├── <span class="fd">common/</span>: DataTable, Modal, ConfirmModal, FormModal, Pagination
+│   │   ├── <span class="fd">ui/</span>: Button, Card, Input, Avatar, Badge, Loader
+│   │   ├── <span class="fd">home/</span>: Hero, BannerSlider, TopProjects, TopServices, Stats
+│   │   ├── <span class="fd">projects/</span>: ProjectCard, ProjectFilters, ProjectDetail
+│   │   ├── <span class="fd">services/</span>: ServiceCard, ServiceFilters, ServiceDetail
+│   │   ├── <span class="fd">cart/</span>: CartItem, CartSummary
+│   │   ├── <span class="fd">orders/</span>: OrderCard, OrderDetail
+│   │   └── <span class="fd">chatbot/</span>: ChatbotWidget, ChatMessage
+│   ├── <span class="fd">redux/</span>
+│   │   ├── <span class="fimp">store.js</span>
+│   │   └── <span class="fd">slices/</span>: authSlice, themeSlice, langSlice, cartSlice, wishlistSlice
+│   ├── <span class="fd">services/</span>
+│   │   ├── <span class="fimp">axiosInstance.js</span>  <span class="cm">// Interceptors, token refresh</span>
+│   │   └── authService.js, adminService.js, userService.js, publicService.js
+│   ├── <span class="fd">middleware/</span>: auth.js, admin.js, guest.js, rateLimit.js
+│   ├── <span class="fd">hooks/</span>: useAuth, useTheme, useLanguage, useDataTable
+│   ├── <span class="fd">providers/</span>: ReduxProvider, ThemeProvider, IntlProvider
+│   ├── <span class="fd">utils/</span>: helpers, validators, formatDate, generateSlug
+│   ├── <span class="fd">config/</span>: env.js, axios.js, site.js
+│   ├── <span class="fd">constants/</span>: api.js, routes.js, roles.js, storageKeys.js
+│   └── <span class="fd">styles/</span>: variables.css, components.css, admin.css, responsive.css
+├── next.config.mjs, package.json, .env.local</pre>
+            </div>
+
+            <div class="sub-header"><i class="fas fa-server"></i>Backend (Express.js 5 — Node 24)</div>
+            <div class="code-block">
+                <div class="code-header"><span class="lang-tag">Directory</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+                <pre><span class="fd">portfolio-saas/server/</span>
+├── <span class="fd">src/</span>
+│   ├── <span class="fimp">app.js</span>           <span class="cm">// Express: middleware, routes, error handler</span>
+│   ├── <span class="fimp">server.js</span>        <span class="cm">// Start: DB, Redis, listen, seed admin</span>
+│   ├── <span class="fd">config/</span>: db.js, redis.js, cloudinary.js, stripe.js, twilio.js, nodemailer.js
+│   ├── <span class="fd">models/</span>           <span class="cm">// 13+ Mongoose models</span>
+│   │   ├── User.js, Category.js, Technology.js, Slug.js, Skill.js
+│   │   ├── Project.js, Service.js, Review.js, Order.js
+│   │   ├── PromoCode.js, Country.js, City.js, Gallery.js, Banner.js
+│   │   ├── AboutUs.js, Blog.js, ContactQuery.js, ChatbotConfig.js, Resume.js
+│   │   └── index.js
+│   ├── <span class="fd">routes/</span>: auth.routes.js, admin.routes.js, user.routes.js, public.routes.js
+│   ├── <span class="fd">controllers/</span>
+│   │   ├── auth.controller.js
+│   │   ├── <span class="fd">admin/</span>: category, technology, slug, skill, project, service, user,
+│   │   │   country, city, gallery, banner, order, dashboard, promoCode,
+│   │   │   chatbot, about, blog, contactQuery, resume, adminProfile
+│   │   ├── user.controller.js, public.controller.js
+│   ├── <span class="fd">middlewares/</span>
+│   │   ├── <span class="fimp">auth.middleware.js</span>    <span class="cm">// JWT verify (access + refresh)</span>
+│   │   ├── <span class="fimp">admin.middleware.js</span>   <span class="cm">// Check role === 'admin'</span>
+│   │   ├── <span class="fimp">rateLimiter.js</span>        <span class="cm">// Redis-backed</span>
+│   │   ├── <span class="fimp">upload.middleware.js</span>   <span class="cm">// Multer + Cloudinary</span>
+│   │   └── validate.middleware.js, error.middleware.js
+│   ├── <span class="fd">utils/</span>: jwtUtils.js, otpUtils.js, cloudinaryUtils.js, emailTemplates.js
+│   └── <span class="fd">services/</span>
+│       ├── <span class="fimp">otp.service.js</span>        <span class="cm">// Send OTP email/SMS/WhatsApp</span>
+│       ├── <span class="fimp">email.service.js</span>      <span class="cm">// Verification, order, promo emails</span>
+│       ├── <span class="fimp">cloudinary.service.js</span> <span class="cm">// Upload, delete, duplicate check</span>
+│       ├── <span class="fimp">promo.service.js</span>      <span class="cm">// Qualify, send, validate, apply</span>
+│       ├── <span class="fimp">chatbot.service.js</span>    <span class="cm">// OpenAI integration</span>
+│       └── <span class="fimp">notification.service.js</span> <span class="cm">// WhatsApp on order send</span>
+├── package.json, .env</pre>
+            </div>
+        </section>
+
+        <!-- ═══ SECURITY ═══ -->
+        <section id="security">
+            <div class="section-header"><div class="section-number">7</div><h2>Security Measures</h2></div>
+            <ul class="feature-list">
+                <li><i class="fas fa-check"></i><strong>JWT httpOnly Cookies:</strong> Access (15min) + Refresh (7d) — not in localStorage</li>
+                <li><i class="fas fa-check"></i><strong>Bcrypt:</strong> 12 salt rounds for all passwords</li>
+                <li><i class="fas fa-check"></i><strong>Redis Rate Limiting:</strong> Per-IP + per-user (100 req/15min public, 200 auth)</li>
+                <li><i class="fas fa-check"></i><strong>Helmet.js:</strong> Security headers (CSP, X-Frame-Options)</li>
+                <li><i class="fas fa-check"></i><strong>CORS:</strong> Strict origin whitelist</li>
+                <li><i class="fas fa-check"></i><strong>Input Validation:</strong> All inputs validated server-side</li>
+                <li><i class="fas fa-check"></i><strong>OTP: 30s in Redis</strong>, auto-deleted. Resend invalidates previous</li>
+                <li><i class="fas fa-check"></i><strong>2FA:</strong> After login, if enabled → require OTP before tokens</li>
+                <li><i class="fas fa-check"></i><strong>Route Protection:</strong> JWT check + role check. Direct URL blocked</li>
+                <li><i class="fas fa-check"></i><strong>Complete Logout:</strong> Clear httpOnly cookies + Redis sessions</li>
+                <li><i class="fas fa-check"></i><strong>No SQL Injection:</strong> Mongoose ODM only</li>
+                <li><i class="fas fa-check"></i><strong>XSS Protection:</strong> React auto-escape + server sanitization</li>
+                <li><i class="fas fa-check"></i><strong>File Upload:</strong> Multer limits + type validation + Cloudinary transforms</li>
+                <li><i class="fas fa-check"></i><strong>Env Vars:</strong> All secrets in .env, never in git</li>
+            </ul>
+        </section>
+
+        <!-- ═══ FEATURES ═══ -->
+        <section id="features">
+            <div class="section-header"><div class="section-number">8</div><h2>Features Detail</h2></div>
+
+            <div class="sub-header"><i class="fas fa-key"></i>Auth &amp; 2FA Flow</div>
+            <div class="flow-row">
+                <span class="flow-step">Signup</span>
+                <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+                <span class="flow-step">Send Verify Email</span>
+                <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+                <span class="flow-step">Click Link</span>
+                <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+                <span class="flow-step">Auto Login</span>
+            </div>
+            <div class="flow-row">
+                <span class="flow-step">Login</span>
+                <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+                <span class="flow-step">2FA?</span>
+                <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+                <span class="flow-step">Send OTP (Email/SMS/WA)</span>
+                <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+                <span class="flow-step">Verify OTP</span>
+                <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+                <span class="flow-step">Tokens</span>
+            </div>
+            <div class="info-box info"><i class="fas fa-info-circle"></i><div><strong>2FA OTP Priority:</strong> If mobile exists → send to mobile + WhatsApp + email. If no mobile → email only. 30s TTL in Redis.</div></div>
+            <div class="info-box warn"><i class="fas fa-exclamation-triangle"></i><div><strong>Forgot Password:</strong> Check mobile first → if found, send OTP there. If not → check email. If neither → error.</div></div>
+
+            <div class="sub-header"><i class="fas fa-shield-alt"></i>Admin Features</div>
+            <ul class="feature-list">
+                <li><i class="fas fa-check"></i><strong>DataTable:</strong> Search, filter, sort, pagination, bulk actions, "Showing 1 of 10"</li>
+                <li><i class="fas fa-check"></i><strong>Detail Pages:</strong> Click row → detail with all info, pictures, videos, skills, tech, reviews</li>
+                <li><i class="fas fa-check"></i><strong>Cloudinary Dedup:</strong> Hash check, skip duplicates, auto-cleanup on delete</li>
+                <li><i class="fas fa-check"></i><strong>Orders:</strong> Send email modal, delete ONLY "sent", delete-all skips "not sent"</li>
+                <li><i class="fas fa-check"></i><strong>Promo Codes:</strong> Auto-qualify users based on purchase, send via SMS/WA/email, per-user limit</li>
+                <li><i class="fas fa-check"></i><strong>Dashboard:</strong> Metrics, charts, recent activities</li>
+                <li><i class="fas fa-check"></i><strong>Country/City Cascade:</strong> Select country → city dropdown filters, auto country code</li>
+            </ul>
+
+            <div class="sub-header"><i class="fas fa-user"></i>User Features</div>
+            <ul class="feature-list">
+                <li><i class="fas fa-check"></i><strong>Guest:</strong> Home, projects, services, about, contact, blogs, gallery, resume</li>
+                <li><i class="fas fa-check"></i><strong>Login Required:</strong> Wishlist, cart, checkout, orders, pay, reviews, profile</li>
+                <li><i class="fas fa-check"></i><strong>Cart Flow:</strong> Add → checkout → Stripe (mock) → place order (paid/pending)</li>
+                <li><i class="fas fa-check"></i><strong>Promo:</strong> Validate at checkout, usage limit warning modal</li>
+                <li><i class="fas fa-check"></i><strong>Order Notification:</strong> Admin sends email → user gets WhatsApp notification</li>
+                <li><i class="fas fa-check"></i><strong>Profile:</strong> Edit info, avatar, password, country→city cascade</li>
+            </ul>
+
+            <div class="sub-header"><i class="fas fa-globe"></i>Public Pages</div>
+            <ul class="feature-list">
+                <li><i class="fas fa-check"></i><strong>Home:</strong> Banner slider, top projects, top services, categories, skills, stats, CTA</li>
+                <li><i class="fas fa-check"></i><strong>Projects/Services:</strong> Grid, filters (category, tech, skill, rating), search, sort, pagination</li>
+                <li><i class="fas fa-check"></i><strong>Detail:</strong> Gallery, info, metadata, related, reviews, cart/wishlist, live preview</li>
+                <li><i class="fas fa-check"></i><strong>Contact:</strong> Form (name, email, subject, message) — no login needed</li>
+                <li><i class="fas fa-check"></i><strong>AI Chatbot:</strong> Floating widget, OpenAI, admin-configurable instructions</li>
+            </ul>
+
+            <div class="sub-header"><i class="fas fa-language"></i>i18n &amp; Theme</div>
+            <div class="doc-card"><div class="cl">Internationalization</div><p><code>i18next</code> + <code>react-i18next</code>. Translation JSON for EN, UR, AR. Language switcher in navbar. Urdu/Arabic = RTL (document.dir + document.lang update dynamically). Backend stays English — translation is frontend-only.</p></div>
+            <div class="doc-card"><div class="cl">Light/Dark Theme</div><p>CSS custom properties in <code>:root</code> (dark) and <code>[data-theme="light"]</code>. Toggle in navbar. Saved in localStorage + Redux. 0.4s smooth transition.</p></div>
+        </section>
+
+        <!-- ═══ PHASES ═══ -->
+        <section id="phases">
+            <div class="section-header"><div class="section-number">9</div><h2>7 Development Phases (~22 days)</h2></div>
+
+            <div class="phase-card">
+                <div class="phase-header"><div class="phase-left"><div class="phase-num">1</div><div class="phase-title">Foundation &amp; Setup</div></div><div class="phase-dur">~2 days</div></div>
+                <div class="phase-desc">Initialize projects, install deps, configure services, build base components.</div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-chevron-right"></i>Create Next.js 16 (App Router) + Express.js 5 backend</li>
+                    <li><i class="fas fa-chevron-right"></i>Install all packages (see Tech Stack)</li>
+                    <li><i class="fas fa-chevron-right"></i>Setup MongoDB (Mongoose), Redis (ioredis)</li>
+                    <li><i class="fas fa-chevron-right"></i>Configure Cloudinary, Twilio, Nodemailer, Stripe</li>
+                    <li><i class="fas fa-chevron-right"></i>Create all 13+ Mongoose models</li>
+                    <li><i class="fas fa-chevron-right"></i>Setup Redux store + all slices</li>
+                    <li><i class="fas fa-chevron-right"></i>Setup Axios instance with interceptors</li>
+                    <li><i class="fas fa-chevron-right"></i>Setup i18next with 3 language files</li>
+                    <li><i class="fas fa-chevron-right"></i>Setup CSS variables for dark/light themes</li>
+                    <li><i class="fas fa-chevron-right"></i>Build: Navbar, Footer, ThemeToggle, LanguageSwitcher</li>
+                    <li><i class="fas fa-chevron-right"></i>Build: DataTable, Modal, ConfirmModal, FormModal</li>
+                    <li><i class="fas fa-chevron-right"></i>Setup Express middleware: cors, helmet, cookie-parser, morgan, rate limiter</li>
+                </ul>
+            </div>
+
+            <div class="phase-card">
+                <div class="phase-header"><div class="phase-left"><div class="phase-num">2</div><div class="phase-title">Authentication System</div></div><div class="phase-dur">~3 days</div></div>
+                <div class="phase-desc">Complete auth: signup, verify, login, 2FA, logout, forgot/reset password.</div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-chevron-right"></i>JWT utils (generate access+refresh, verify)</li>
+                    <li><i class="fas fa-chevron-right"></i>OTP utils (generate 6-digit, Redis 30s, verify, resend invalidate)</li>
+                    <li><i class="fas fa-chevron-right"></i>Auth middleware (verify access, verify refresh, admin check)</li>
+                    <li><i class="fas fa-chevron-right"></i>Signup API + email verification token</li>
+                    <li><i class="fas fa-chevron-right"></i>Verify email → auto-login (httpOnly cookies)</li>
+                    <li><i class="fas fa-chevron-right"></i>Login → 2FA check → temp token or issue tokens</li>
+                    <li><i class="fas fa-chevron-right"></i>Enable/Confirm/Verify 2FA APIs</li>
+                    <li><i class="fas fa-chevron-right"></i>Refresh token, Logout (clear cookies+Redis)</li>
+                    <li><i class="fas fa-chevron-right"></i>Forgot password → find by mobile/email → OTP → reset</li>
+                    <li><i class="fas fa-chevron-right"></i>Frontend: Login, Signup, Verify Email, Forgot, OTP, Reset pages</li>
+                    <li><i class="fas fa-chevron-right"></i>ProtectedRoute, GuestRoute, Redux auth thunks</li>
+                    <li><i class="fas fa-chevron-right"></i>Axios interceptor: auto refresh on 401</li>
+                    <li><i class="fas fa-chevron-right"></i>Seed admin user in database</li>
+                </ul>
+            </div>
+
+            <div class="phase-card">
+                <div class="phase-header"><div class="phase-left"><div class="phase-num">3</div><div class="phase-title">Admin Core — All CRUD</div></div><div class="phase-dur">~5 days</div></div>
+                <div class="phase-desc">All admin CRUD with DataTable, modals, uploads, Cloudinary dedup.</div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-chevron-right"></i>Admin layout: Sidebar, Header, responsive</li>
+                    <li><i class="fas fa-chevron-right"></i>Upload middleware (multer+Cloudinary) + dedup utility</li>
+                    <li><i class="fas fa-chevron-right"></i>Categories CRUD, Technologies CRUD, Slugs CRUD, Skills CRUD</li>
+                    <li><i class="fas fa-chevron-right"></i>Projects CRUD: multi-image+video, Cloudinary dedup, detail+reviews</li>
+                    <li><i class="fas fa-chevron-right"></i>Services CRUD (same as projects)</li>
+                    <li><i class="fas fa-chevron-right"></i>Countries CRUD, Cities CRUD + cascade dropdown</li>
+                    <li><i class="fas fa-chevron-right"></i>Users: create (send verify email), read, edit (NOT pw/email), toggle, delete</li>
+                    <li><i class="fas fa-chevron-right"></i>Gallery: upload multiple, delete, delete-all, Cloudinary cleanup</li>
+                    <li><i class="fas fa-chevron-right"></i>Banners: same as gallery</li>
+                    <li><i class="fas fa-chevron-right"></i>Admin Profile: edit, avatar (dedup), change password</li>
+                    <li><i class="fas fa-chevron-right"></i>Resume: upload (replace), view, delete</li>
+                </ul>
+            </div>
+
+            <div class="phase-card">
+                <div class="phase-header"><div class="phase-left"><div class="phase-num">4</div><div class="phase-title">User Features</div></div><div class="phase-dur">~3 days</div></div>
+                <div class="phase-desc">Wishlist, cart, checkout, orders, promo codes, ratings/reviews.</div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-chevron-right"></i>Wishlist: add/remove/view (API + page + Redux)</li>
+                    <li><i class="fas fa-chevron-right"></i>Cart: add/remove/update quantity/view</li>
+                    <li><i class="fas fa-chevron-right"></i>Checkout: summary, promo input, place order (with/without payment)</li>
+                    <li><i class="fas fa-chevron-right"></i>Mock Stripe payment page → mark paid</li>
+                    <li><i class="fas fa-chevron-right"></i>Pay later from orders page</li>
+                    <li><i class="fas fa-chevron-right"></i>Orders list + detail page</li>
+                    <li><i class="fas fa-chevron-right"></i>Reviews: add/edit/delete rating+text on projects/services</li>
+                    <li><i class="fas fa-chevron-right"></i>User profile: edit, avatar, change password</li>
+                </ul>
+            </div>
+
+            <div class="phase-card">
+                <div class="phase-header"><div class="phase-left"><div class="phase-num">5</div><div class="phase-title">Public Frontend Pages</div></div><div class="phase-dur">~4 days</div></div>
+                <div class="phase-desc">All guest pages with filters, search, pagination, responsive.</div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-chevron-right"></i>Home: hero, banner slider, top projects/services, categories, skills, stats</li>
+                    <li><i class="fas fa-chevron-right"></i>Projects: grid, filters, search, sort, pagination</li>
+                    <li><i class="fas fa-chevron-right"></i>Project detail: gallery, info, related, reviews, cart/wishlist</li>
+                    <li><i class="fas fa-chevron-right"></i>Services + Service detail (same pattern)</li>
+                    <li><i class="fas fa-chevron-right"></i>About Us, Contact Us (form), Blogs + detail</li>
+                    <li><i class="fas fa-chevron-right"></i>Gallery (image grid + lightbox), Resume download</li>
+                    <li><i class="fas fa-chevron-right"></i>All public API routes</li>
+                </ul>
+            </div>
+
+            <div class="phase-card">
+                <div class="phase-header"><div class="phase-left"><div class="phase-num">6</div><div class="phase-title">Advanced Features</div></div><div class="phase-dur">~3 days</div></div>
+                <div class="phase-desc">Dashboard analytics, promo system, order management, AI chatbot, content.</div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-chevron-right"></i>Dashboard: metrics, charts, recent activities</li>
+                    <li><i class="fas fa-chevron-right"></i>Promo: create → auto-qualify → send notification → validate → apply</li>
+                    <li><i class="fas fa-chevron-right"></i>Orders: admin table, detail, send email modal, delete logic, WhatsApp notify</li>
+                    <li><i class="fas fa-chevron-right"></i>AI Chatbot: OpenAI integration, admin instructions editor, floating widget</li>
+                    <li><i class="fas fa-chevron-right"></i>About CRUD + public page, Blogs CRUD + public pages</li>
+                    <li><i class="fas fa-chevron-right"></i>Contact Queries: admin table, detail, reply via email</li>
+                </ul>
+            </div>
+
+            <div class="phase-card">
+                <div class="phase-header"><div class="phase-left"><div class="phase-num">7</div><div class="phase-title">Polish, Testing &amp; Deployment</div></div><div class="phase-dur">~2 days</div></div>
+                <div class="phase-desc">Responsive testing, RTL, error handling, performance, deploy.</div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-chevron-right"></i>Full responsive testing: mobile, tablet, laptop, desktop, iPad</li>
+                    <li><i class="fas fa-chevron-right"></i>RTL testing for Urdu and Arabic</li>
+                    <li><i class="fas fa-chevron-right"></i>Toast for every action, modal confirmations</li>
+                    <li><i class="fas fa-chevron-right"></i>Loading states, empty states, error boundaries, 404/500</li>
+                    <li><i class="fas fa-chevron-right"></i>Route protection testing (direct URL, search bar)</li>
+                    <li><i class="fas fa-chevron-right"></i>Performance: lazy loading, code splitting, Redis caching</li>
+                    <li><i class="fas fa-chevron-right"></i>Deploy: Vercel (frontend) + Railway (backend)</li>
+                    <li><i class="fas fa-chevron-right"></i>Setup MongoDB Atlas + Redis Cloud (Upstash)</li>
+                    <li><i class="fas fa-chevron-right"></i>End-to-end testing of all flows</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ═══ ENV ═══ -->
+        <section id="env">
+            <div class="section-header"><div class="section-number">10</div><h2>Environment Variables</h2></div>
+
+            <div class="sub-header" style="color:var(--accent-blue)"><i class="fas fa-window-maximize"></i>Frontend (.env.local)</div>
+            <div class="code-block">
+                <div class="code-header"><span class="lang-tag">env</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+                <pre>NEXT_PUBLIC_API_BASE_URL=http://localhost:5000/api/v1
+NEXT_PUBLIC_APP_NAME="Arsalan Portfolio"
+NEXT_PUBLIC_DEFAULT_LANGUAGE=en</pre>
+            </div>
+
+            <div class="sub-header" style="color:var(--accent-purple)"><i class="fas fa-server"></i>Backend (.env)</div>
+            <div class="code-block">
+                <div class="code-header"><span class="lang-tag">env</span><button class="copy-btn" onclick="copyCode(this)">Copy</button></div>
+                <pre>PORT=5000
+NODE_ENV=development
+
+<span class="cm"># MongoDB</span>
+MONGODB_URI=mongodb+srv://user:pass@cluster.mongodb.net/arsalan-portfolio
+
+<span class="cm"># Redis</span>
+REDIS_URL=redis://default:pass@redis-host:6379
+
+<span class="cm"># JWT</span>
+JWT_ACCESS_SECRET=your-super-secret-access-key-min-32-chars
+JWT_REFRESH_SECRET=your-super-secret-refresh-key-min-32-chars
+JWT_ACCESS_EXPIRY=15m
+JWT_REFRESH_EXPIRY=7d
+
+<span class="cm"># Cloudinary</span>
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+CLOUDINARY_FOLDER=arsalan-portfolio
+
+<span class="cm"># Nodemailer (Gmail)</span>
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=your-email@gmail.com
+SMTP_PASS=your-app-password
+FROM_EMAIL=noreply@arsalan-portfolio.com
+FROM_NAME="Arsalan Portfolio"
+
+<span class="cm"># Twilio</span>
+TWILIO_ACCOUNT_SID=your_sid
+TWILIO_AUTH_TOKEN=your_token
+TWILIO_PHONE_NUMBER=+1234567890
+TWILIO_WHATSAPP_NUMBER=whatsapp:+1234567890
+
+<span class="cm"># Stripe (Mock)</span>
+STRIPE_SECRET_KEY=sk_test_xxx
+STRIPE_PUBLISHABLE_KEY=pk_test_xxx
+
+<span class="cm"># OpenAI</span>
+OPENAI_API_KEY=sk-xxx
+
+<span class="cm"># CORS</span>
+FRONTEND_URL=http://localhost:3000
+
+<span class="cm"># Admin Seed</span>
+ADMIN_NAME="Arsalan Akhtar"
+ADMIN_EMAIL=jaffri.arsalan786@gmail.com
+ADMIN_PASSWORD=Admin@123456</pre>
+            </div>
+        </section>
+
+        <!-- ═══ DEPLOYMENT ═══ -->
+        <section id="deploy">
+            <div class="section-header"><div class="section-number">11</div><h2>Deployment Plan</h2></div>
+            <div class="flow-row">
+                <span class="flow-step">GitHub Push</span>
+                <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+                <span class="flow-step">Vercel (FE)</span>
+                <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+                <span class="flow-step">Railway (BE)</span>
+                <span class="flow-arrow"><i class="fas fa-arrow-right"></i></span>
+                <span class="flow-step">Atlas + Redis</span>
+            </div>
+            <ul class="feature-list">
+                <li><i class="fas fa-check"></i><strong>Frontend:</strong> GitHub → Vercel auto-deploy → set <code>NEXT_PUBLIC_API_BASE_URL</code></li>
+                <li><i class="fas fa-check"></i><strong>Backend:</strong> GitHub → Railway → set all .env vars → use <code>process.env.PORT</code></li>
+                <li><i class="fas fa-check"></i><strong>DB:</strong> Atlas → whitelist IPs → update connection string</li>
+                <li><i class="fas fa-check"></i><strong>Redis:</strong> Upstash → REST URL in backend</li>
+                <li><i class="fas fa-check"></i><strong>Domain:</strong> Custom domain on Vercel → update CORS + FRONTEND_URL</li>
+                <li><i class="fas fa-check"></i><strong>SSL:</strong> Free from Vercel + Railway</li>
+            </ul>
+            <div class="info-box success"><i class="fas fa-check-circle"></i><div><strong>Estimated Total: ~22 days</strong> full-time. Each phase builds on previous. Ready to start Phase 1?</div></div>
+        </section>
+
+        <footer class="footer-note">
+            <div class="brand-foot">Arsalan Akhtar Portfolio SaaS</div>
+            Complete Project Document v1.0 — June 2026
+        </footer>
+
+    </main>
+
+    <script>
+        // ─── THEME TOGGLE ───
+        (function() {
+            const btn = document.getElementById('themeToggle');
+            const html = document.documentElement;
+
+            function setTheme(theme) {
+                html.setAttribute('data-theme', theme);
+                localStorage.setItem('theme', theme);
+                btn.innerHTML = theme === 'dark' ? '<i class="fas fa-moon"></i>' : '<i class="fas fa-sun"></i>';
+            }
+
+            const saved = localStorage.getItem('theme');
+            const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            const initial = saved || (prefersDark ? 'dark' : 'light');
+            setTheme(initial);
+
+            btn.addEventListener('click', function() {
+                const current = html.getAttribute('data-theme');
+                setTheme(current === 'dark' ? 'light' : 'dark');
+            });
+        })();
+
+        // ─── SIDEBAR MOBILE ───
+        (function() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            const toggle = document.getElementById('menuToggle');
+
+            function openSidebar() {
+                sidebar.classList.add('open');
+                overlay.classList.add('open');
+            }
+
+            function closeSidebar() {
+                sidebar.classList.remove('open');
+                overlay.classList.remove('open');
+            }
+
+            toggle.addEventListener('click', function() {
+                if (sidebar.classList.contains('open')) {
+                    closeSidebar();
+                } else {
+                    openSidebar();
+                }
+            });
+
+            overlay.addEventListener('click', closeSidebar);
+
+            // Close sidebar on link click (mobile)
+            document.querySelectorAll('.sidebar a').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    if (window.innerWidth <= 992) {
+                        closeSidebar();
+                    }
+                });
+            });
+        })();
+
+        // ─── ACTIVE NAV ON SCROLL ───
+        (function() {
+            const links = document.querySelectorAll('.sidebar a');
+            const sections = [];
+            links.forEach(function(link) {
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    const id = href.substring(1);
+                    const el = document.getElementById(id);
+                    if (el) {
+                        sections.push({ id: id, el: el, link: link });
+                    }
+                }
+            });
+
+            function updateActive() {
+                let active = sections[0];
+                for (let i = 0; i < sections.length; i++) {
+                    const rect = sections[i].el.getBoundingClientRect();
+                    if (rect.top <= 80) {
+                        active = sections[i];
+                    } else {
+                        break;
+                    }
+                }
+                links.forEach(function(l) { l.classList.remove('active'); });
+                if (active) {
+                    active.link.classList.add('active');
+                }
+            }
+
+            window.addEventListener('scroll', updateActive, { passive: true });
+            updateActive();
+        })();
+
+        // ─── COPY CODE ───
+        function copyCode(btn) {
+            const block = btn.closest('.code-block');
+            const pre = block.querySelector('pre');
+            const text = pre.textContent;
+            navigator.clipboard.writeText(text).then(function() {
+                const original = btn.textContent;
+                btn.textContent = 'Copied!';
+                btn.style.color = '#4ade80';
+                btn.style.borderColor = '#22c55e';
+                setTimeout(function() {
+                    btn.textContent = original;
+                    btn.style.color = '';
+                    btn.style.borderColor = '';
+                }, 1200);
+            }).catch(function() {
+                // Fallback
+                const range = document.createRange();
+                range.selectNode(pre);
+                window.getSelection().removeAllRanges();
+                window.getSelection().addRange(range);
+                document.execCommand('copy');
+                window.getSelection().removeAllRanges();
+                const original = btn.textContent;
+                btn.textContent = 'Copied!';
+                setTimeout(function() {
+                    btn.textContent = original;
+                }, 1200);
+            });
+        }
+
+        // ─── LANGUAGE SWITCHER ───
+        (function() {
+            const langBtns = document.querySelectorAll('.lang-btn');
+            langBtns.forEach(function(btn) {
+                btn.addEventListener('click', function() {
+                    langBtns.forEach(function(b) { b.classList.remove('active'); });
+                    this.classList.add('active');
+                    // In real app, this would switch i18n language
+                    console.log('Language switched to:', this.textContent.trim());
+                });
+            });
+        })();
+    </script>
+
+</body>
+</html>
