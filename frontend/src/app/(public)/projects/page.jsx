@@ -21,13 +21,13 @@ export default function ProjectsPage() {
   const fetchProjects = useCallback(async (p, f) => {
     setLoading(true);
     try {
-      const params = { page: p, limit: 9, ...f };
+      const params = { page: p, limit: 100, ...f };
       Object.keys(params).forEach(k => { if (!params[k]) delete params[k]; });
       const { data } = await publicService.getProjects(params);
       if (data.success) {
         setProjects(data.data?.projects || data.data || []);
-        setTotalPages(data.data?.totalPages || data.totalPages || 1);
-        setTotalItems(data.data?.totalItems || data.totalItems || 0);
+        setTotalPages(data.pagination?.pages || data.data?.totalPages || data.totalPages || 1);
+        setTotalItems(data.pagination?.total || data.data?.totalItems || data.totalItems || 0);
       }
     } catch (err) {
       console.error('Failed to fetch projects', err);
@@ -70,7 +70,7 @@ export default function ProjectsPage() {
                 </div>
               ))}
             </div>
-            <Pagination page={page} totalPages={totalPages} totalItems={totalItems} onPageChange={setPage} />
+            <Pagination page={page} totalPages={totalPages} totalItems={totalItems} perPage={100} onPageChange={setPage} />
           </>
         )}
       </div>

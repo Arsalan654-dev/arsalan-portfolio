@@ -227,15 +227,15 @@ export default function ProjectDetailContent({ slug }) {
                 >
                   {isInWishlist ? '♥ In Wishlist' : '♡ Add to Wishlist'}
                 </button>
-                {project.liveUrl && (
+                {(project.livePreviewUrl || project.liveUrl) && (
                   <a
-                    href={project.liveUrl}
+                    href={project.livePreviewUrl || project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn fw-semibold py-2"
                     style={{ border: '1px solid #10b981', color: '#10b981', background: 'transparent' }}
                   >
-                    Live Preview &nearr;
+                    Live Preview {'\u2197'}
                   </a>
                 )}
               </div>
