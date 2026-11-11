@@ -8,7 +8,8 @@ import toast from 'react-hot-toast';
 import axiosInstance from '../../services/axiosInstance';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowUp, faEnvelope, faMapMarkerAlt, faPhone } from '@fortawesome/free-solid-svg-icons';
-import { faFacebookF, faTwitter, faLinkedinIn, faGithub, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faFacebookF, faGithub, faInstagram } from '@fortawesome/free-brands-svg-icons';
+import BrandLogo from '@/components/common/BrandLogo';
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -32,17 +33,14 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { icon: faFacebookF, href: 'https://facebook.com', label: 'Facebook' },
-    { icon: faTwitter, href: 'https://twitter.com', label: 'Twitter' },
-    { icon: faLinkedinIn, href: 'https://linkedin.com', label: 'LinkedIn' },
-    { icon: faGithub, href: 'https://github.com', label: 'GitHub' },
-    { icon: faInstagram, href: 'https://instagram.com', label: 'Instagram' },
-    { icon: faYoutube, href: 'https://youtube.com', label: 'YouTube' },
+    { icon: faFacebookF, href: 'https://www.facebook.com/1115264175012492', label: 'Facebook' },
+    { icon: faInstagram, href: 'https://www.instagram.com/arsalan85890/', label: 'Instagram' },
+    { icon: faGithub, href: 'https://github.com/Arsalan654-dev', label: 'GitHub' },
   ];
 
   const contactInfo = [
-    { icon: faEnvelope, text: 'arsalan@example.com' },
-    { icon: faPhone, text: '+92 300 1234567' },
+    { icon: faEnvelope, text: 'jaffri.arsalan786@gmail.com' },
+    { icon: faPhone, text: '+92 311 1015939' },
     { icon: faMapMarkerAlt, text: 'Pakistan' },
   ];
 
@@ -57,15 +55,12 @@ export default function Footer() {
       <div className="container-fluid px-4 py-5">
         <div className="row g-4">
           <div className="col-lg-4 col-md-6">
-            <h5 className="fw-bold mb-3"
-              style={{
-                background: 'linear-gradient(135deg, #8b5cf6, #38bdf8)',
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-                backgroundClip: 'text',
-              }}>
-              Arsalan Portfolio
-            </h5>
+            <Link href="/" className="d-inline-block mb-3" aria-label="Jaffri's Tech Solutions home">
+              <BrandLogo height={54} />
+            </Link>
+            <p style={{ color: 'var(--tm)', fontSize: '0.72rem', letterSpacing: '0.12em', textTransform: 'uppercase', marginBottom: '0.75rem' }}>
+              Arsalan Jaffri · Full-Stack Software Engineer
+            </p>
             <p style={{ color: isDark ? '#aaa' : '#666', fontSize: '0.9rem', lineHeight: 1.7 }}>
               {t('footer.footerDescription')}
             </p>
@@ -222,7 +217,7 @@ export default function Footer() {
           <div className="row align-items-center">
             <div className="col-md-6 text-center text-md-start">
               <p className="mb-0" style={{ color: isDark ? '#888' : '#999', fontSize: '0.85rem' }}>
-                &copy; {new Date().getFullYear()} {t('footer.copyright', { appName: 'Arsalan Portfolio' })}
+                &copy; {new Date().getFullYear()} {t('footer.copyright', { appName: "Jaffri's Tech Solutions" })}
               </p>
             </div>
             <div className="col-md-6 text-center text-md-end mt-2 mt-md-0">

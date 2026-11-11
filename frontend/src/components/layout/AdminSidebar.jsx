@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import BrandLogo from '@/components/common/BrandLogo';
 import {
   faTachometerAlt, faLayerGroup, faMicrochip, faCode, faTools,
   faProjectDiagram, faServer, faUsers, faGlobeAsia, faCity,
@@ -95,8 +96,8 @@ export default function AdminSidebar({ isOpen, onClose }) {
 
       <aside className={`admin-sidebar ${isOpen ? 'mobile-open' : ''}`}>
         <div className="sidebar-header">
-          <Link href="/admin" className="sidebar-logo">
-            <span className="logo-icon">A</span>
+          <Link href="/admin" className="sidebar-logo" aria-label="Jaffri's Tech Solutions admin panel">
+            <BrandLogo variant="icon" height={30} />
             <span>Admin Panel</span>
           </Link>
           <button className="sidebar-toggle d-lg-none" onClick={onClose}>

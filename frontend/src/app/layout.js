@@ -34,7 +34,11 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth" data-theme="dark">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Arsalan Portfolio</title>
+        <meta name="description" content="Arsalan Jaffri — full-stack software engineer at Jaffri's Tech Solutions. Web, mobile and AI products built for real operations." />
+        <meta name="theme-color" content="#0a0a0f" />
+        <link rel="icon" type="image/png" href="/brand/logo-icon-dark.png" />
+        <link rel="apple-touch-icon" href="/brand/logo-icon-dark.png" />
+        <title>Jaffri&apos;s Tech Solutions | Arsalan Jaffri</title>
       </head>
       <body style={{ margin: 0 }}>
         <Providers>

@@ -1,6 +1,7 @@
 'use client';
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import BrandLogo from '@/components/common/BrandLogo';
 
 const specialties = [
   'Full-Stack Web Development',
@@ -56,8 +57,11 @@ export default function HeroSection() {
       <div className="container position-relative" style={{ zIndex: 1 }}>
         <div className="row justify-content-center text-center">
           <div className="col-lg-8 col-xl-7">
+            <div className="d-flex justify-content-center mb-3">
+              <BrandLogo height="clamp(48px, 7vw, 68px)" />
+            </div>
             <p className="text-uppercase fw-semibold mb-3" style={{ color: 'var(--ap)', letterSpacing: '3px', fontSize: '0.875rem' }}>
-              Welcome to My Portfolio
+              Jaffri&apos;s Tech Solutions · Portfolio
             </p>
             <h1 className="display-4 fw-bold mb-2" style={{
               background: 'var(--gm)',
@@ -65,7 +69,7 @@ export default function HeroSection() {
               WebkitTextFillColor: 'transparent',
               backgroundClip: 'text'
             }}>
-              Arsalan Akhtar
+              Arsalan Jaffri
             </h1>
             <p className="fs-5 fw-medium mb-2" style={{ color: 'var(--ts)' }}>
               Full-Stack Software Engineer

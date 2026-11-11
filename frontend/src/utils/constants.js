@@ -1,4 +1,4 @@
-export const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || 'Arsalan Portfolio';
+export const APP_NAME = process.env.NEXT_PUBLIC_APP_NAME || "Jaffri's Tech Solutions";
 export const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || 'http://localhost:5000/api/v1';
 export const DEFAULT_LANGUAGE = process.env.NEXT_PUBLIC_DEFAULT_LANGUAGE || 'en';
 

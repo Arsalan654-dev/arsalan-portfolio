@@ -11,6 +11,7 @@ import { logout } from '@/redux/slices/authSlice';
 import { setAccessToken } from '@/services/axiosInstance';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon, faSearch, faShoppingCart, faUser, faSignOutAlt, faSignInAlt, faUserPlus, faBars, faTimes, faGlobe } from '@fortawesome/free-solid-svg-icons';
+import BrandLogo from '@/components/common/BrandLogo';
 
 export default function Navbar() {
   const { t } = useTranslation();
@@ -82,12 +83,30 @@ export default function Navbar() {
 
           {/* Left: Brand + Hamburger */}
           <div className="d-flex align-items-center flex-shrink-0">
-            <Link className="navbar-brand fw-bold fs-5 mb-0" href="/" style={{
-              background: 'linear-gradient(135deg, #8b5cf6, #38bdf8)',
-              WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
-              whiteSpace: 'nowrap',
-            }}>
-              Arsalan Jaffri
+            <Link
+              className="navbar-brand d-flex align-items-center gap-2 mb-0"
+              href="/"
+              aria-label="Jaffri's Tech Solutions — Arsalan Jaffri portfolio"
+              style={{ whiteSpace: 'nowrap' }}
+            >
+              <BrandLogo height="clamp(32px, 4vw, 40px)" />
+              <span
+                className="d-none d-lg-inline"
+                style={{
+                  color: 'var(--ts)',
+                  borderLeft: '1px solid var(--bdr)',
+                  paddingLeft: '0.65rem',
+                  fontSize: '0.72rem',
+                  fontWeight: 600,
+                  lineHeight: 1.25,
+                  letterSpacing: '0.04em',
+                }}
+              >
+                Arsalan Jaffri
+                <span className="d-block" style={{ color: 'var(--tm)', fontSize: '0.6rem', letterSpacing: '0.12em' }}>
+                  PORTFOLIO
+                </span>
+              </span>
             </Link>
             <button className="navbar-toggler border-0 ms-1 d-lg-none p-1" type="button"
               onClick={() => setMenuOpen(!menuOpen)}

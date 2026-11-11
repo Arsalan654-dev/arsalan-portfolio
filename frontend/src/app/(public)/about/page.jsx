@@ -5,6 +5,7 @@ import toast from 'react-hot-toast';
 import publicService from '@/services/publicService';
 import { getImageUrl } from '@/utils/helpers';
 import LoadingSpinner from '@/components/common/LoadingSpinner';
+import BrandLogo from '@/components/common/BrandLogo';
 
 export default function AboutPage() {
   const [about, setAbout] = useState(null);
@@ -39,6 +40,12 @@ export default function AboutPage() {
     <section style={{ background: 'var(--bs)', minHeight: '80vh' }}>
       <div className="container py-5">
         <div className="text-center mb-5">
+          <div className="d-flex justify-content-center mb-3">
+            <BrandLogo height="clamp(44px, 6vw, 58px)" />
+          </div>
+          <p className="text-uppercase fw-semibold mb-2" style={{ color: 'var(--ap)', letterSpacing: '2.5px', fontSize: '0.75rem' }}>
+            Jaffri&apos;s Tech Solutions
+          </p>
           <h1 className="fw-bold" style={{ background: 'var(--gm)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
             About Me
           </h1>
@@ -64,7 +71,7 @@ export default function AboutPage() {
             </div>
           )}
           <div className={about.images?.length > 0 ? 'col-lg-7' : 'col-lg-12'}>
-            <h2 className="fw-bold mb-3" style={{ color: 'var(--tp)' }}>{about.name || 'Arsalan Akhtar'}</h2>
+            <h2 className="fw-bold mb-3" style={{ color: 'var(--tp)' }}>{about.name || 'Arsalan Jaffri'}</h2>
             {about.title && <p className="fs-5 fw-medium mb-3" style={{ color: 'var(--ap)' }}>{about.title}</p>}
             {about.description && (
               <p className="mb-4" style={{ color: 'var(--ts)', lineHeight: 1.8, fontSize: '1.05rem' }}>{about.description}</p>
